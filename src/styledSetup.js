@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
 
 *,
 *::after,
@@ -18,7 +17,6 @@ html {
 body {
   background-color: #f0f0f0;
   box-sizing: border-box;
-  font-family: 'Nanum Gothic', sans-serif;
   color: #39312E;
 }
 
@@ -31,6 +29,12 @@ body {
 @media (max-width: 480px) {
   html {
     font-size: 40%;
+  }
+}
+
+@media (max-width: 400px) {
+  html {
+    font-size: 35%;
   }
 }
 

@@ -1,0 +1,11 @@
+{
+  "root": "build/",
+  "routes": {
+    "/**": "index.html"
+  },
+  "headers": {
+    "/**": {
+      "Cache-Control": "private, max-age=604800"
+    }
+  }
+}

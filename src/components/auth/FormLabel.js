@@ -14,7 +14,7 @@ function FormLabel(props) {
 }
 
 FormLabel.propTypes = {
-  text: PropTypes,
+  text: PropTypes.string.isRequired,
 };
 
 export default FormLabel;

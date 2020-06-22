@@ -4,15 +4,15 @@ import { Form } from 'react-bootstrap';
 import Label from './FormLabel';
 import { ErrorText } from './CommonElems';
 
-function InputEmail(props) {
+function InputText(props) {
   const { handleChange, value, error } = props;
   return (
     <Form.Group>
-      <Label variant='light' text='Email' htmlFor='email' />
+      <Label variant='light' text='Full Name' htmlFor='name' />
       <Form.Control
-        name='email'
-        type='email'
-        placeholder='Email'
+        name='name'
+        type='text'
+        placeholder='Full Name'
         size='lg'
         onChange={(e) => handleChange(e)}
         value={value}
@@ -22,10 +22,10 @@ function InputEmail(props) {
   );
 }
 
-InputEmail.propTypes = {
+InputText.propTypes = {
   handleChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   error: PropTypes.string,
 };
 
-export default InputEmail;
+export default InputText;

@@ -3,6 +3,11 @@ import { Button } from 'react-bootstrap';
 import landing from '../../assets/landing.jpeg';
 import { Link } from 'react-router-dom';
 
+export const ErrorText = styled.p`
+  font-size: 1.4rem;
+  color: ${(props) => props.theme.colors.colorDanger};
+`;
+
 export const LandingContainer = styled.div`
   background: url(${landing}) no-repeat;
   background-size: 100% 100%;
@@ -23,6 +28,7 @@ export const CenteredContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   padding: 2rem;
   border-radius: 10px;
+  min-width: 50rem;
 `;
 
 export const Title = styled.h1`
