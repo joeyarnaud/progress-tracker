@@ -48,7 +48,8 @@ const Landing = (props) => {
                   password: values.password,
                 })
                 .then((res) => {
-                  props.setCurrentUser(res.data.token);
+                  console.log(res.data);
+                  props.setCurrentUser(res.data);
                 })
                 .catch((err) => {});
             }}
@@ -72,6 +73,7 @@ const Landing = (props) => {
                     onClick={handleSubmit}
                     disabled={isSubmitting}
                     variant='success'
+                    type='submit'
                   >
                     Sign In
                   </SubmitButton>
@@ -91,7 +93,7 @@ const Landing = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  token: state.auth.token,
+  token: state.auth.tokenInfo,
 });
 
 export default connect(mapStateToProps, { setCurrentUser })(Landing);

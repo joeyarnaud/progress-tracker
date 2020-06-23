@@ -25,6 +25,11 @@ const AddWorkout = Loadable({
   loading: Loader,
 });
 
+const Workout = Loadable({
+  loader: () => import('pages/Workout'),
+  loading: Loader,
+});
+
 export default function Router() {
   return (
     <BrowserRouter>
@@ -33,8 +38,9 @@ export default function Router() {
         <Route path='/register' component={Register} exact />
         <PrivateRoute path='/'>
           <Navigation />
-          <PrivateRoute path='/dashboard' component={Dashboard} />
-          <PrivateRoute path='/add-workout' component={AddWorkout} />
+          <PrivateRoute path='/dashboard' component={Dashboard} exact />
+          <PrivateRoute path='/add-workout' component={AddWorkout} exact />
+          <PrivateRoute path='/workout/:id' component={Workout} exact />
         </PrivateRoute>
       </Switch>
     </BrowserRouter>

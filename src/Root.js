@@ -5,13 +5,14 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import jwtDecode from 'jwt-decode';
+import api from 'utils/api';
 import rootReducer from './reducers';
 import { setCurrentUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import CacheBuster from './CacheBuster';
 
 const Root = ({ children, initialState }) => {
-  const middleware = [thunk];
+  const middleware = [thunk, api];
 
   if (process.env.NODE_ENV === 'development') {
     middleware.push(createLogger());
@@ -31,12 +32,12 @@ const Root = ({ children, initialState }) => {
   );
 
   // Check for token
-  if (localStorage.token) {
+  if (localStorage.tokens) {
     // Decode token and get user info and exp
-    let token = JSON.parse(localStorage.getItem('token'));
+    let token = JSON.parse(localStorage.getItem('tokens'));
 
     // Set auth token header auth
-    setAuthToken(token);
+    // setAuthToken(token);
 
     // Set user and isAuthenticated
     store.dispatch(setCurrentUser(token));

@@ -1,11 +1,10 @@
 import jwtDecode from 'jwt-decode';
-import setAuthToken from '../utils/setAuthToken';
-import { setLocalStorage } from '../utils/localStorage';
-import { LOGOUT_USER, SET_CURRENT_USER } from '../types';
+import setAuthToken from 'utils/setAuthToken';
+import { LOGOUT_USER, SET_CURRENT_USER } from 'types';
 
 const initialState = {
-  token: {},
   tokenInfo: {},
+  loading: false,
 };
 
 export default function (state = initialState, action) {
@@ -14,12 +13,10 @@ export default function (state = initialState, action) {
       localStorage.clear();
       return Object.assign({}, state, initialState);
     case SET_CURRENT_USER:
-      setLocalStorage(action.token, 'token');
-      setAuthToken(action.token);
+      setAuthToken(action.payload);
       return {
         ...state,
-        token: action.token,
-        tokenInfo: jwtDecode(action.token),
+        tokenInfo: jwtDecode(action.payload.token),
       };
     default:
       return state;

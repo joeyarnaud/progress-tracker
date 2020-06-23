@@ -29,8 +29,8 @@ const Dropdown = styled(NavDropdown)`
 
 function Navigation(props) {
   const { auth } = props;
-  const { token, tokenInfo } = auth;
-  return !isEmpty(token) ? (
+  const { tokenInfo } = auth;
+  return !isEmpty(tokenInfo) ? (
     <NavContainer collapseOnSelect expand='lg' bg='light'>
       <Brand to='/dashboard' as={NavLink}>
         Progress Tracker

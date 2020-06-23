@@ -2,7 +2,12 @@ import React, { useReducer } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { isEmpty } from 'helpers';
-import { ExerciseContainer } from './commonElems';
+import {
+  ExerciseContainer,
+  TitleContainer,
+  TitleLabel,
+  TitleInput,
+} from './commonElems';
 
 const ExerciseInputContainer = styled(Form.Group)`
   position: relative;
@@ -14,16 +19,6 @@ const ExerciseInputLabel = styled(Form.Label)`
 
 const ExerciseInput = styled(Form.Control)`
   width: 28rem;
-  font-size: 1.6rem;
-`;
-
-const TitleContainer = styled(Form.Group)``;
-
-const TitleLabel = styled(Form.Label)`
-  /* font-size: 1.4rem; */
-`;
-
-const TitleInput = styled(Form.Control)`
   font-size: 1.6rem;
 `;
 
@@ -54,7 +49,7 @@ const reducer = (state, action) => {
   console.log(action);
   switch (action.type) {
     case TITLE_INPUT:
-      return { ...state, title: action.payload };
+      return { ...state, name: action.payload };
     case WEIGHT_INPUT:
       if (action.payload.match(/[^0-9]/g)) {
         return state;
@@ -83,7 +78,7 @@ export function ExerciseCreate(props) {
     ...exercise,
     weightType: 'kg',
   });
-  const { title, weight, reps, sets, weightType } = state;
+  const { name, weight, reps, sets, weightType } = state;
   console.log(state);
   return (
     <Container>
@@ -92,7 +87,7 @@ export function ExerciseCreate(props) {
         <TitleInput
           type='text'
           placeholder='Exercise Name'
-          value={title}
+          value={name}
           onChange={(e) =>
             dispatch({ type: TITLE_INPUT, payload: e.target.value })
           }
@@ -147,10 +142,10 @@ export function ExerciseCreate(props) {
         <Button
           variant='outline-success'
           size='lg'
-          disabled={isEmpty(title) || isEmpty(sets)}
+          disabled={isEmpty(name) || isEmpty(sets)}
           onClick={() =>
             handleSubmit({
-              title,
+              name,
               weight,
               reps,
               sets,

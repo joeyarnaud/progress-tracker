@@ -1,8 +1,16 @@
 import React, { useReducer } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { ExerciseDisplay, ExerciseCreate } from 'components/add-workout';
 import { isEmpty } from 'helpers';
+import {
+  TitleContainer,
+  TitleLabel,
+  TitleInput,
+} from 'components/add-workout/commonElems';
+import { postWorkout, clearWorkout } from 'actions';
 
 const Title = styled.h2`
   font-size: 3rem;
@@ -18,6 +26,7 @@ const SubmitWorkoutButton = styled(Button)`
 const ADD_EXERCISE = 'ADD_EXERCISE';
 const SUBMIT_EXERCISE = 'SUBMIT_EXERCISE';
 const CANCEL_LAST_EXERCISE = 'CANCEL_LAST_EXERCISE';
+const TITLE_INPUT = 'TITLE_INPUT';
 
 const reducer = (state, action) => {
   console.log(action);
@@ -50,18 +59,39 @@ const reducer = (state, action) => {
         ...state,
         exercises: [...state.exercises.slice(0, state.exercises.length - 1)],
       };
+    case TITLE_INPUT:
+      return {
+        ...state,
+        title: action.payload,
+      };
     default:
       return state;
   }
 };
 
-function AddWorkout() {
-  const [state, dispatch] = useReducer(reducer, { exercises: [] });
-  const { exercises } = state;
-  console.log(state);
-  return (
+function AddWorkout(props) {
+  const [state, dispatch] = useReducer(reducer, { exercises: [], title: '' });
+  const { exercises, title } = state;
+  const { workout } = props;
+
+  if (!isEmpty(workout)) {
+    props.clearWorkout();
+  }
+
+  return isEmpty(workout) ? (
     <Container>
       <Title>Add Workout</Title>
+      <TitleContainer>
+        <TitleLabel>Workout Name *required</TitleLabel>
+        <TitleInput
+          type='text'
+          placeholder='Workout Name'
+          value={title}
+          onChange={(e) =>
+            dispatch({ type: TITLE_INPUT, payload: e.target.value })
+          }
+        />
+      </TitleContainer>
       <Container>
         {exercises &&
           exercises.map((exercise, index) => {
@@ -91,13 +121,27 @@ function AddWorkout() {
       <div style={{ marginTop: '2rem' }}>
         {(isEmpty(exercises) || exercises[exercises.length - 1].submitted) &&
           exercises.length > 0 && (
-            <SubmitWorkoutButton variant='outline-primary'>
+            <SubmitWorkoutButton
+              onClick={() => props.postWorkout(title, exercises)}
+              variant='outline-primary'
+            >
               Submit Workout
             </SubmitWorkoutButton>
           )}
       </div>
     </Container>
+  ) : (
+    <Redirect to={`/workout/${workout._id}`} />
   );
 }
 
-export default AddWorkout;
+const mapStateToProps = (state) => ({
+  workout: state.workout.workout,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  postWorkout: (title, exercises) => dispatch(postWorkout(title, exercises)),
+  clearWorkout: () => dispatch(clearWorkout()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddWorkout);

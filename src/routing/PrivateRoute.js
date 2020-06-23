@@ -15,7 +15,6 @@ import { isEmpty } from 'helpers';
 class PrivateRoute extends Component {
   render() {
     const { component: Component, auth, user, ...rest } = this.props;
-    console.log(this.props);
     return (
       <Route
         {...rest}
@@ -43,7 +42,7 @@ PrivateRoute.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth.token,
+  auth: state.auth.tokenInfo,
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

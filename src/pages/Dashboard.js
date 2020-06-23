@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { getWorkouts } from 'actions';
 
-export default function Dashboard() {
-  return <Container>dashboard</Container>;
+class Dashboard extends Component {
+  componentDidMount() {
+    this.props.getWorkouts();
+  }
+
+  render() {
+    return <Container>dashboard</Container>;
+  }
 }
+
+const mapStateToProps = (state) => ({
+  workouts: state.workout,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getWorkouts: () => dispatch(getWorkouts()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
