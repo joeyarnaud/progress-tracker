@@ -1,15 +1,18 @@
 import React, { useReducer } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { ExerciseDisplay, ExerciseCreate } from 'components/add-workout';
+import {
+  ExerciseDisplay,
+  ExerciseCreate,
+} from 'components/workouts/add-workout';
 import { isEmpty } from 'helpers';
 import {
   TitleContainer,
   TitleLabel,
   TitleInput,
-} from 'components/add-workout/commonElems';
+} from 'components/workouts/add-workout/commonElems';
 import { postWorkout, clearWorkout } from 'actions';
 
 const Title = styled.h2`
@@ -29,7 +32,6 @@ const CANCEL_LAST_EXERCISE = 'CANCEL_LAST_EXERCISE';
 const TITLE_INPUT = 'TITLE_INPUT';
 
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case ADD_EXERCISE:
       return {

@@ -11,12 +11,12 @@ import {
   LandingContainer,
   OverlayContainer,
   CenteredContainer,
-  Title,
   SubmitButton,
   Center,
   Text,
   ErrorText,
 } from 'components/auth/CommonElems';
+import { Title1 } from 'components/common/styled-components';
 import { isEmpty } from 'helpers';
 
 class Register extends Component {
@@ -108,7 +108,7 @@ class Register extends Component {
       <LandingContainer>
         <OverlayContainer>
           <CenteredContainer>
-            <Title>Progress Tracker</Title>
+            <Title1>Progress Tracker</Title1>
             <Form>
               <InputText
                 handleChange={this.handleStandardChange}

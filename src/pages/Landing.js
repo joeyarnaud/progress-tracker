@@ -10,11 +10,11 @@ import {
   LandingContainer,
   OverlayContainer,
   CenteredContainer,
-  Title,
   SubmitButton,
   Center,
   Text,
 } from 'components/auth/CommonElems';
+import { Title1 } from 'components/common/styled-components';
 import { setCurrentUser } from 'actions';
 import { isEmpty } from 'helpers';
 
@@ -24,7 +24,7 @@ const Landing = (props) => {
     <LandingContainer>
       <OverlayContainer>
         <CenteredContainer>
-          <Title>Progress Tracker</Title>
+          <Title1>Progress Tracker</Title1>
           <Formik
             initialValues={{ email: '', password: '' }}
             validate={(values) => {

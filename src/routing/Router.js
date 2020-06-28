@@ -30,6 +30,21 @@ const Workout = Loadable({
   loading: Loader,
 });
 
+const Workouts = Loadable({
+  loader: () => import('pages/Workouts'),
+  loading: Loader,
+});
+
+const Exercises = Loadable({
+  loader: () => import('pages/Exercises'),
+  loading: Loader,
+});
+
+const Exercise = Loadable({
+  loader: () => import('pages/Exercise'),
+  loading: Loader,
+});
+
 export default function Router() {
   return (
     <BrowserRouter>
@@ -38,9 +53,14 @@ export default function Router() {
         <Route path='/register' component={Register} exact />
         <PrivateRoute path='/'>
           <Navigation />
-          <PrivateRoute path='/dashboard' component={Dashboard} exact />
-          <PrivateRoute path='/add-workout' component={AddWorkout} exact />
-          <PrivateRoute path='/workout/:id' component={Workout} exact />
+          <Switch>
+            <PrivateRoute path='/dashboard' component={Dashboard} exact />
+            <PrivateRoute path='/workout/create' component={AddWorkout} exact />
+            <PrivateRoute path='/workout/:id' component={Workout} exact />
+            <PrivateRoute path='/workouts' component={Workouts} exact />
+            <PrivateRoute path='/exercises' component={Exercises} exact />
+            <PrivateRoute path='/exercise/:id' component={Exercise} exact />
+          </Switch>
         </PrivateRoute>
       </Switch>
     </BrowserRouter>

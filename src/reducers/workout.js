@@ -8,14 +8,22 @@ import {
   GET_WORKOUTS_REQUEST,
   GET_WORKOUTS_SUCCESS,
   GET_WORKOUTS_FAILURE,
+  DELETE_EXERCISE_REQUEST,
+  DELETE_EXERCISE_SUCCESS,
+  DELETE_EXERCISE_FAILURE,
+  DELETE_WORKOUT_REQUEST,
+  DELETE_WORKOUT_SUCCESS,
+  DELETE_WORKOUT_FAILURE,
   CLEAR_WORKOUT,
 } from 'types';
+import { isEmpty } from 'helpers';
 
 const initialState = {
   workouts: [],
   loading: false,
   workout: {},
   error: {},
+  deleted: false,
 };
 
 export default function (state = initialState, action) {
@@ -37,6 +45,29 @@ export default function (state = initialState, action) {
     case GET_WORKOUTS_SUCCESS:
       return { ...state, loading: false, workouts: action.payload };
     case GET_WORKOUTS_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+    case DELETE_EXERCISE_REQUEST:
+      return { ...state, loading: true };
+    case DELETE_EXERCISE_SUCCESS:
+      return !isEmpty(state.workout.exercises)
+        ? {
+            ...state,
+            loading: false,
+            workout: {
+              ...state.workout,
+              exercises: state.workout.exercises.filter(
+                (ex) => ex._id !== action.payload._id
+              ),
+            },
+          }
+        : state;
+    case DELETE_EXERCISE_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+    case DELETE_WORKOUT_REQUEST:
+      return { ...state, loading: true };
+    case DELETE_WORKOUT_SUCCESS:
+      return { ...state, loading: false, workout: { deleted: true } };
+    case DELETE_WORKOUT_FAILURE:
       return { ...state, loading: false, error: action.payload };
     case CLEAR_WORKOUT:
       return { workouts: [], loading: false, workout: {}, error: {} };

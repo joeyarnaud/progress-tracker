@@ -31,13 +31,6 @@ export const CenteredContainer = styled.div`
   min-width: 50rem;
 `;
 
-export const Title = styled.h1`
-  color: ${(props) => props.theme.colors.colorWhite};
-  font-size: 5rem;
-  font-family: ${(props) => props.theme.fontStyles.boldest};
-  margin-bottom: 4rem;
-`;
-
 export const SubmitButton = styled(Button)`
   font-size: 2rem;
   padding: 0.5rem 4rem;

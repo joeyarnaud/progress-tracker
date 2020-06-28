@@ -16,11 +16,11 @@ const InfoSegment = styled.div`
 `;
 
 function ExerciseDisplay(props) {
-  const { title, weight, reps, sets, weightType } = props;
+  const { name, weight, reps, sets, weightType } = props;
   console.log(props);
   return (
     <DisplayContainer>
-      <InfoSegment>Exercise Name: {title}</InfoSegment>
+      <InfoSegment>Exercise Name: {name}</InfoSegment>
       <InfoSegment>
         Weight: {weight}
         {weightType}
@@ -36,7 +36,7 @@ ExerciseDisplay.defaultProps = {
 };
 
 ExerciseDisplay.propTypes = {
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   weight: PropTypes.number.isRequired,
   reps: PropTypes.number.isRequired,
   sets: PropTypes.number.isRequired,

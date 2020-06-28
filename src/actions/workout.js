@@ -10,9 +10,22 @@ import {
   GET_WORKOUTS_REQUEST,
   GET_WORKOUTS_SUCCESS,
   GET_WORKOUTS_FAILURE,
+  DELETE_WORKOUT_REQUEST,
+  DELETE_WORKOUT_SUCCESS,
+  DELETE_WORKOUT_FAILURE,
+  ADD_EXERCISE_TO_WORKOUT_REQUEST,
+  ADD_EXERCISE_TO_WORKOUT_SUCCESS,
+  ADD_EXERCISE_TO_WORKOUT_FAILURE,
   CLEAR_WORKOUT,
 } from 'types';
 
+/**
+ *
+ * @param {string} name
+ * @param {array} exercises
+ * @desc creates a workout
+ * @method POST
+ */
 export const postWorkout = (name, exercises) => ({
   [CALL_API]: {
     endpoint: '/workout/create',
@@ -29,6 +42,11 @@ export const postWorkout = (name, exercises) => ({
   },
 });
 
+/**
+ *
+ * @param {string} id
+ * @desc get a specific workout
+ */
 export const getWorkout = (id) => ({
   [CALL_API]: {
     endpoint: `/workout/${id}`,
@@ -37,6 +55,9 @@ export const getWorkout = (id) => ({
   },
 });
 
+/**
+ * @desc get all workouts
+ */
 export const getWorkouts = () => ({
   [CALL_API]: {
     endpoint: `/workout`,
@@ -45,4 +66,41 @@ export const getWorkouts = () => ({
   },
 });
 
+/**
+ *
+ * @param {string} id
+ */
+export const deleteWorkout = (id) => ({
+  [CALL_API]: {
+    endpoint: `/workout/${id}`,
+    method: 'DELETE',
+    types: [
+      DELETE_WORKOUT_REQUEST,
+      DELETE_WORKOUT_SUCCESS,
+      DELETE_WORKOUT_FAILURE,
+    ],
+  },
+});
+
+export const addExercise = (workout_id, name, weight, sets, reps) => ({
+  [CALL_API]: {
+    endpoint: `/workout/update/${workout_id}`,
+    method: 'PUT',
+    body: {
+      name,
+      weight,
+      sets,
+      reps,
+    },
+    types: [
+      ADD_EXERCISE_TO_WORKOUT_REQUEST,
+      ADD_EXERCISE_TO_WORKOUT_SUCCESS,
+      ADD_EXERCISE_TO_WORKOUT_FAILURE,
+    ],
+  },
+});
+
+/**
+ * @desc clear the workouts global state
+ */
 export const clearWorkout = () => ({ type: CLEAR_WORKOUT });

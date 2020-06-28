@@ -45,7 +45,7 @@ export const theme = {
     colorDarkBrown: '#6a594f',
     colorDarkerBrown: '#372E29',
     colorPrimaryLight: '#9d8a7c',
-    colorPrimary: '#847162',
+    colorPrimary: '#545AC7',
     colorDarkBlue: '#2B9FB3',
     colorLightBrown: '#DFCAC0',
     colorLighterBrown: '#f0e6e2',
@@ -59,6 +59,7 @@ export const theme = {
     colorWarning: '#E38C2A',
     colorSuccess: '#C4AD57',
     colorInfo: '#72DDE8',
+    colorDark: '#343A40',
   },
   fonts: {
     fontFancy: "'Signika', sans-serif",

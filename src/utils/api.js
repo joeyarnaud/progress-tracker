@@ -12,8 +12,6 @@ export default (store) => (next) => (action) => {
     return next(action);
   }
 
-  console.log(callAPI);
-
   // Get the data of the call
   const {
     endpoint,
