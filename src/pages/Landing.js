@@ -38,6 +38,7 @@ const Landing = (props) => {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
+              console.log('here');
               setTimeout(() => {
                 setSubmitting(false);
               }, 2000);

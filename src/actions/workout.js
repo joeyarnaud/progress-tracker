@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
   CALL_API,
   CREATE_WORKOUT_REQUEST,
@@ -16,6 +15,9 @@ import {
   ADD_EXERCISE_TO_WORKOUT_REQUEST,
   ADD_EXERCISE_TO_WORKOUT_SUCCESS,
   ADD_EXERCISE_TO_WORKOUT_FAILURE,
+  CHANGE_WORKOUT_NAME_REQUEST,
+  CHANGE_WORKOUT_NAME_SUCCESS,
+  CHANGE_WORKOUT_NAME_FAILURE,
   CLEAR_WORKOUT,
 } from 'types';
 
@@ -82,20 +84,45 @@ export const deleteWorkout = (id) => ({
   },
 });
 
-export const addExercise = (workout_id, name, weight, sets, reps) => ({
+export const addExercise = (
+  workout_id,
+  name,
+  weight,
+  sets,
+  reps,
+  type,
+  date
+) => ({
   [CALL_API]: {
-    endpoint: `/workout/update/${workout_id}`,
+    endpoint: `/workout/add-exercise/${workout_id}`,
     method: 'PUT',
     body: {
       name,
       weight,
       sets,
       reps,
+      type,
+      date,
     },
     types: [
       ADD_EXERCISE_TO_WORKOUT_REQUEST,
       ADD_EXERCISE_TO_WORKOUT_SUCCESS,
       ADD_EXERCISE_TO_WORKOUT_FAILURE,
+    ],
+  },
+});
+
+export const changeName = (name, id) => ({
+  [CALL_API]: {
+    endpoint: `/workout/change-name/${id}`,
+    method: 'PUT',
+    body: {
+      name,
+    },
+    types: [
+      CHANGE_WORKOUT_NAME_REQUEST,
+      CHANGE_WORKOUT_NAME_SUCCESS,
+      CHANGE_WORKOUT_NAME_FAILURE,
     ],
   },
 });

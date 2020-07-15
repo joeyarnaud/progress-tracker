@@ -14,6 +14,12 @@ import {
   DELETE_WORKOUT_REQUEST,
   DELETE_WORKOUT_SUCCESS,
   DELETE_WORKOUT_FAILURE,
+  ADD_EXERCISE_TO_WORKOUT_REQUEST,
+  ADD_EXERCISE_TO_WORKOUT_SUCCESS,
+  ADD_EXERCISE_TO_WORKOUT_FAILURE,
+  CHANGE_WORKOUT_NAME_REQUEST,
+  CHANGE_WORKOUT_NAME_SUCCESS,
+  CHANGE_WORKOUT_NAME_FAILURE,
   CLEAR_WORKOUT,
 } from 'types';
 import { isEmpty } from 'helpers';
@@ -39,6 +45,19 @@ export default function (state = initialState, action) {
     case GET_WORKOUT_SUCCESS:
       return { ...state, loading: false, workout: action.payload };
     case GET_WORKOUT_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+    case ADD_EXERCISE_TO_WORKOUT_REQUEST:
+      return { ...state, loading: true };
+    case ADD_EXERCISE_TO_WORKOUT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        workout: {
+          ...state.workout,
+          exercises: [...state.workout.exercises, action.payload],
+        },
+      };
+    case ADD_EXERCISE_TO_WORKOUT_FAILURE:
       return { ...state, loading: false, error: action.payload };
     case GET_WORKOUTS_REQUEST:
       return { ...state, loading: true };
@@ -68,6 +87,12 @@ export default function (state = initialState, action) {
     case DELETE_WORKOUT_SUCCESS:
       return { ...state, loading: false, workout: { deleted: true } };
     case DELETE_WORKOUT_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+    case CHANGE_WORKOUT_NAME_REQUEST:
+      return { ...state, loading: true };
+    case CHANGE_WORKOUT_NAME_SUCCESS:
+      return { ...state, loading: false, workout: action.payload };
+    case CHANGE_WORKOUT_NAME_FAILURE:
       return { ...state, loading: false, error: action.payload };
     case CLEAR_WORKOUT:
       return { workouts: [], loading: false, workout: {}, error: {} };

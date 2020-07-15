@@ -43,7 +43,7 @@ const reducer = (state, action) => {
             weight: '',
             sets: '',
             reps: '',
-            weightType: 'kg',
+            type: 'kg',
             submitted: false,
           },
         ],

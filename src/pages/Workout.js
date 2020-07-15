@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Container, Dropdown } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Container, Dropdown, Button } from 'react-bootstrap';
 import moment from 'moment';
 import {
   getWorkout,
@@ -10,23 +9,24 @@ import {
   deleteWorkout,
   clearWorkout,
   addExercise,
+  changeName,
 } from 'actions';
+import {
+  TitleContainer,
+  TitleInput,
+} from 'components/workouts/add-workout/commonElems';
+import { Title4, FlexBoxBetween } from 'components/common/styled-components';
 import { ExerciseSummary } from 'components/exercise/ExerciseSummary';
-import { CustomToggle } from 'components/common/buttons';
+import { CustomToggle, BlankButton } from 'components/common/buttons';
 import { WarningModal, AddExerciseModal } from 'components/common/modals';
-
-const Title = styled.h2`
-  color: ${(props) => props.theme.colors.colorDark};
-  margin-top: 2rem;
-  font-size: 2rem;
-`;
-
-const Flex = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+import { isEmpty } from 'helpers';
 
 class Workout extends Component {
+  state = {
+    edit: false,
+    title: '',
+  };
+
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.getWorkout(id);
@@ -36,22 +36,64 @@ class Workout extends Component {
     this.props.clearWorkout();
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!isEmpty(nextProps.workout) && isEmpty(this.props.workout)) {
+      console.log('here');
+      this.setState({ title: nextProps.workout.name });
+    }
+    return true;
+  }
+
+  changeWorkoutName = (e) => {
+    this.props.changeName(this.state.title, this.props.workout._id);
+    this.setState({ edit: false });
+  };
+
+  toggleNameEdit = () =>
+    this.setState((prevState) => ({ edit: !prevState.edit }));
+
+  handleStandardChange = (e) =>
+    this.setState({ [e.target.name]: e.target.value });
+
   render() {
     const { workout } = this.props;
     const { date, exercises, name, _id, deleted } = workout;
+    const { edit, title } = this.state;
 
     return deleted ? (
       <Redirect to='/workouts' />
     ) : (
       <Container>
-        <Flex>
-          <Title>{name}</Title>
+        <FlexBoxBetween>
+          {edit ? (
+            <TitleContainer style={{ display: 'flex', marginTop: '1rem' }}>
+              <TitleInput
+                type='text'
+                placeholder='Workout Name'
+                name='title'
+                value={title}
+                onChange={this.handleStandardChange}
+              />
+              <Button onClick={this.changeWorkoutName} variant='success'>
+                Submit
+              </Button>
+            </TitleContainer>
+          ) : (
+            <Title4>{name}</Title4>
+          )}
           <div
             style={{
               display: 'flex',
               flexDirection: 'row',
             }}
           >
+            <AddExerciseModal
+              name={name}
+              id={_id}
+              action={this.props.addExercise}
+              buttonText='Add Exercise'
+              size='1.6rem'
+            />
             <Dropdown style={{ display: 'inherit', marginRight: '3rem' }}>
               <Dropdown.Toggle
                 as={CustomToggle}
@@ -68,21 +110,16 @@ class Workout extends Component {
                   />
                 </Dropdown.Item>
                 <Dropdown.Item eventKey='2'>
-                  <i className='fas fa-edit'></i> Edit Workout
+                  <BlankButton onClick={this.toggleNameEdit}>
+                    <i className='fas fa-edit'></i> Change Name
+                  </BlankButton>
                 </Dropdown.Item>
-                <Dropdown.Item eventKey='2'>
-                  <AddExerciseModal
-                    name={name}
-                    id={_id}
-                    action={this.props.addExercise}
-                    buttonText='Add Exercise'
-                  />
-                </Dropdown.Item>
+                <Dropdown.Item eventKey='2'></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Title>{moment(date).format('DD/MM/yyyy')}</Title>
+            <Title4>{moment(date).format('DD/MM/yyyy')}</Title4>
           </div>
-        </Flex>
+        </FlexBoxBetween>
         <Container>
           {exercises &&
             exercises.map((exercise) => {
@@ -111,8 +148,9 @@ const mapDispatchToProps = (dispatch) => ({
   deleteExercise: (id) => dispatch(deleteExercise(id)),
   clearWorkout: () => dispatch(clearWorkout()),
   deleteWorkout: (id) => dispatch(deleteWorkout(id)),
-  addExercise: (workout_id, name, weight, sets, reps) =>
-    dispatch(addExercise(workout_id, name, weight, sets, reps)),
+  addExercise: (workout_id, name, weight, sets, reps, type, date) =>
+    dispatch(addExercise(workout_id, name, weight, sets, reps, type, date)),
+  changeName: (name, id) => dispatch(changeName(name, id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Workout);

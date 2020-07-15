@@ -16,3 +16,7 @@ export const setTokens = ({ refreshToken, token }) => {
 };
 
 export const getTokens = () => JSON.parse(localStorage.getItem('tokens'));
+
+export const deleteTokens = () => {
+  localStorage.removeItem('tokens');
+};

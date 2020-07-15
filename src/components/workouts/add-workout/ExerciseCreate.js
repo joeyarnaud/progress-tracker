@@ -1,48 +1,26 @@
 import React, { useReducer } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Button } from 'react-bootstrap';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import { isEmpty } from 'helpers';
 import {
   ExerciseContainer,
   TitleContainer,
   TitleLabel,
   TitleInput,
+  Container,
+  ExerciseInputContainer,
+  ExerciseInput,
+  ExerciseInputLabel,
+  Select,
+  MarginRight,
 } from './commonElems';
-
-const ExerciseInputContainer = styled(Form.Group)`
-  position: relative;
-`;
-
-const ExerciseInputLabel = styled(Form.Label)`
-  /* font-size: 1.2rem; */
-`;
-
-const ExerciseInput = styled(Form.Control)`
-  width: 28rem;
-  font-size: 1.6rem;
-`;
-
-const Container = styled.div`
-  font-size: 1.6rem;
-  margin-bottom: 2rem;
-`;
-
-const MarginRight = styled.div`
-  margin-right: 2rem;
-  display: inline;
-`;
-
-const Select = styled.select`
-  position: absolute;
-  top: 3rem;
-  right: 0;
-  height: 3.2rem;
-`;
 
 const TITLE_INPUT = 'TITLE_INPUT';
 const WEIGHT_INPUT = 'WEIGHT_INPUT';
 const REP_INPUT = 'REP_INPUT';
 const SET_INPUT = 'SET_INPUT';
+const CHANGE_DATE = 'CHANGE_DATE';
 const SET_WEIGHT_TYPE = 'SET_WEIGHT_TYPE';
 
 const reducer = (state, action) => {
@@ -65,8 +43,10 @@ const reducer = (state, action) => {
         return state;
       }
       return { ...state, sets: action.payload };
+    case CHANGE_DATE:
+      return { ...state, date: action.payload };
     case SET_WEIGHT_TYPE:
-      return { ...state, weightType: action.payload };
+      return { ...state, type: action.payload };
     default:
       return state;
   }
@@ -76,9 +56,10 @@ export function ExerciseCreate(props) {
   const { exercise, handleSubmit, cancelExercise } = props;
   const [state, dispatch] = useReducer(reducer, {
     ...exercise,
-    weightType: 'kg',
+    type: 'kg',
+    date: new Date(),
   });
-  const { name, weight, reps, sets, weightType } = state;
+  const { name, weight, reps, sets, type, date } = state;
   console.log(state);
   return (
     <Container>
@@ -105,7 +86,7 @@ export function ExerciseCreate(props) {
             }
           />
           <Select
-            value={weightType}
+            value={type}
             onChange={(e) =>
               dispatch({ type: SET_WEIGHT_TYPE, payload: e.target.value })
             }
@@ -137,6 +118,13 @@ export function ExerciseCreate(props) {
             }
           />
         </ExerciseInputContainer>
+        <ExerciseInputContainer>
+          <Calendar
+            onChange={(date) => dispatch({ type: CHANGE_DATE, payload: date })}
+            value={date}
+            maxDate={new Date()}
+          />
+        </ExerciseInputContainer>
       </ExerciseContainer>
       <MarginRight>
         <Button
@@ -149,8 +137,9 @@ export function ExerciseCreate(props) {
               weight,
               reps,
               sets,
-              weightType: weightType,
+              type: type,
               submitted: true,
+              date,
             })
           }
         >

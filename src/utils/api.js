@@ -3,6 +3,7 @@
 import qs from 'query-string';
 import axios from 'axios';
 import { CALL_API } from 'types';
+import { REFRESH_TOKEN_FAILURE } from 'types';
 
 // The root call for all the api requests
 
@@ -59,14 +60,18 @@ export default (store) => (next) => (action) => {
     headers,
     onUploadProgress: handleUploadProgress,
     data: body,
-  })
-    .then(createFSAConverter(successType, failureType, store.dispatch))
-    .catch((err) => console.log(err));
+  }).then(createFSAConverter(successType, failureType, store.dispatch));
+  // .catch((err) => console.log(err));
 };
 
 export const createFSAConverter = (successType, failureType, dispatch) => (
   response
 ) => {
+  if (response.response && response.response.status === 401) {
+    return dispatch({
+      type: REFRESH_TOKEN_FAILURE,
+    });
+  }
   // define the failuretype for the request
   if (
     !(

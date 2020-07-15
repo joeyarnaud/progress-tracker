@@ -4,11 +4,9 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import jwtDecode from 'jwt-decode';
 import api from 'utils/api';
 import rootReducer from './reducers';
 import { setCurrentUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
 import CacheBuster from './CacheBuster';
 
 const Root = ({ children, initialState }) => {

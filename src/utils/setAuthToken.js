@@ -21,6 +21,13 @@ const setAuthToken = () => {
       const { refreshToken } = getTokens();
       const originalRequest = error.config;
 
+      if (
+        error.response.status === 401 &&
+        originalRequest.url === 'http://localhost:8080/api/auth/token'
+      ) {
+        return Promise.reject(error);
+      }
+
       if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
         return axios
@@ -28,14 +35,18 @@ const setAuthToken = () => {
             refreshToken: refreshToken,
           })
           .then((res) => {
-            console.log(res);
             if (res.status === 201) {
               setTokens(res.data);
 
               return axios(originalRequest);
             }
+          })
+          .catch((err) => {
+            return err;
           });
       }
+
+      return Promise.reject(error);
     }
   );
 };

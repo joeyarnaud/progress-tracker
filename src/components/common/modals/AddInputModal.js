@@ -7,9 +7,6 @@ import 'react-calendar/dist/Calendar.css';
 import { isEmpty } from 'helpers';
 import {
   ExerciseContainer,
-  TitleContainer,
-  TitleLabel,
-  TitleInput,
   ExerciseInputContainer,
   ExerciseInput,
   ExerciseInputLabel,
@@ -35,7 +32,7 @@ const customStyles = {
   },
 };
 
-const DeleteButton = styled.button`
+const AddButton = styled.button`
   color: ${(props) => props.theme.colors.colorDanger};
   background-color: inherit;
   border: none;
@@ -94,7 +91,7 @@ const reducer = (state, action) => {
   }
 };
 
-const AddExerciseModal = (props) => {
+const AddInputModal = (props) => {
   const [isOpen, setModalVisible] = useState(false);
   const [state, dispatch] = useReducer(reducer, {
     name: '',
@@ -109,13 +106,13 @@ const AddExerciseModal = (props) => {
 
   return (
     <React.Fragment>
-      <DeleteButton
+      <AddButton
         style={{ fontSize: size }}
         onClick={() => setModalVisible(true)}
       >
         <i className='fas fa-plus-circle'></i>
         {' ' + buttonText}
-      </DeleteButton>
+      </AddButton>
       <Modal
         isOpen={isOpen}
         onRequestClose={() => setModalVisible(false)}
@@ -125,22 +122,6 @@ const AddExerciseModal = (props) => {
       >
         <InfoContainer>
           <Container>
-            <TitleContainer>
-              <TitleLabel>Exercise Name *required</TitleLabel>
-              <TitleInput
-                type='text'
-                placeholder='Exercise Name'
-                value={name}
-                onChange={(e) => {
-                  console.log('here');
-                  console.log(e.target.value);
-                  return dispatch({
-                    type: TITLE_INPUT,
-                    payload: e.target.value,
-                  });
-                }}
-              />
-            </TitleContainer>
             <ExerciseContainer>
               <ExerciseInputContainer style={{ width: '100%' }}>
                 <ExerciseInputLabel>Weight</ExerciseInputLabel>
@@ -203,9 +184,9 @@ const AddExerciseModal = (props) => {
               <Button
                 variant='outline-success'
                 size='lg'
-                disabled={isEmpty(name) || isEmpty(sets)}
+                disabled={isEmpty(sets)}
                 onClick={() => {
-                  action(id, name, weight, sets, reps, type, date);
+                  action(id, { name, weight, sets, reps, type, date });
                   setModalVisible(false);
                   dispatch({ type: CLEAR });
                 }}
@@ -227,9 +208,9 @@ const AddExerciseModal = (props) => {
   );
 };
 
-AddExerciseModal.defaultProps = {
+AddInputModal.defaultProps = {
   warningText: '',
   size: '1rem',
 };
 
-export { AddExerciseModal };
+export { AddInputModal };
