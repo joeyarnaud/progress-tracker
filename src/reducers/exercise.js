@@ -8,15 +8,18 @@ import {
   GET_EXERCISE_REQUEST,
   GET_EXERCISE_SUCCESS,
   GET_EXERCISE_FAILURE,
-  ADD_EXERCISE_INPUT_REQUEST,
-  ADD_EXERCISE_INPUT_SUCCESS,
-  ADD_EXERCISE_INPUT_FAILURE,
   CHANGE_EXERCISE_NAME_REQUEST,
   CHANGE_EXERCISE_NAME_SUCCESS,
   CHANGE_EXERCISE_NAME_FAILURE,
-  DELETE_EXERCISE_INPUT_REQUEST,
-  DELETE_EXERCISE_INPUT_SUCCESS,
-  DELETE_EXERCISE_INPUT_FAILURE,
+  CREATE_EXERCISE_REQUEST,
+  CREATE_EXERCISE_SUCCESS,
+  CREATE_EXERCISE_FAILURE,
+  ADD_INPUT_REQUEST,
+  ADD_INPUT_SUCCESS,
+  ADD_INPUT_FAILURE,
+  DELETE_INPUT_REQUEST,
+  DELETE_INPUT_SUCCESS,
+  DELETE_INPUT_FAILURE,
 } from 'types';
 
 const initialState = {
@@ -33,6 +36,17 @@ export default function (state = initialState, action) {
     case GET_ALL_EXERCISES_SUCCESS:
       return { ...state, loading: false, exercises: action.payload };
     case GET_ALL_EXERCISES_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+    case CREATE_EXERCISE_REQUEST:
+      return { ...state, loading: true };
+    case CREATE_EXERCISE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        exercises: [...state.exercises, action.payload],
+        exercise: action.payload,
+      };
+    case CREATE_EXERCISE_FAILURE:
       return { ...state, loading: false, error: action.payload };
     case DELETE_EXERCISE_REQUEST:
       return { ...state, loading: true };
@@ -53,11 +67,18 @@ export default function (state = initialState, action) {
       return { ...state, loading: false, exercise: action.payload };
     case GET_EXERCISE_FAILURE:
       return { ...state, loading: false, error: action.payload };
-    case ADD_EXERCISE_INPUT_REQUEST:
+    case ADD_INPUT_REQUEST:
       return { ...state, loading: true };
-    case ADD_EXERCISE_INPUT_SUCCESS:
-      return { ...state, loading: false, exercise: action.payload };
-    case ADD_EXERCISE_INPUT_FAILURE:
+    case ADD_INPUT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        exercise: {
+          ...state.exercise,
+          inputs: [...state.exercise.inputs, action.payload],
+        },
+      };
+    case ADD_INPUT_FAILURE:
       return { ...state, loading: false, error: action.payload };
     case CHANGE_EXERCISE_NAME_REQUEST:
       return { ...state, loading: true };
@@ -65,11 +86,11 @@ export default function (state = initialState, action) {
       return { ...state, loading: false, exercise: action.payload };
     case CHANGE_EXERCISE_NAME_FAILURE:
       return { ...state, loading: false, error: action.payload };
-    case DELETE_EXERCISE_INPUT_REQUEST:
+    case DELETE_INPUT_REQUEST:
       return { ...state, loading: true };
-    case DELETE_EXERCISE_INPUT_SUCCESS:
+    case DELETE_INPUT_SUCCESS:
       return { ...state, loading: false, exercise: action.payload };
-    case DELETE_EXERCISE_INPUT_FAILURE:
+    case DELETE_INPUT_FAILURE:
       return { ...state, loading: false, error: action.payload };
     default:
       return state;

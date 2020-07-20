@@ -205,7 +205,9 @@ const AddExerciseModal = (props) => {
                 size='lg'
                 disabled={isEmpty(name) || isEmpty(sets)}
                 onClick={() => {
-                  action(id, name, weight, sets, reps, type, date);
+                  !isEmpty(id)
+                    ? action(id, name, weight, sets, reps, type, date)
+                    : action(name, weight, sets, reps, type, date);
                   setModalVisible(false);
                   dispatch({ type: CLEAR });
                 }}

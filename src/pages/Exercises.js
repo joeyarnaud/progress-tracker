@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { getExercises, deleteExercise } from 'actions';
-import {
-  TitleContainer,
-  Title2,
-  AdderButton,
-} from 'components/common/styled-components';
+import { getExercises, deleteExercise, createExercise } from 'actions';
+import { TitleContainer, Title2 } from 'components/common/styled-components';
 import { ExerciseSummary } from 'components/exercise/ExerciseSummary';
+import { AddExerciseModal } from 'components/common/modals';
+import { NoData } from 'components/common/empty';
+import { isEmpty } from 'helpers';
 
 const Title = styled(Title2)`
   color: ${(props) => props.theme.colors.colorInfo};
@@ -25,12 +24,14 @@ class Exercise extends Component {
       <Container>
         <TitleContainer>
           <Title>Your Exercises</Title>
-          <AdderButton to='/exercise/create'>
-            <i className='fas fa-plus-circle'></i>
-          </AdderButton>
+          <AddExerciseModal
+            action={this.props.createExercise}
+            buttonText='Add Exercise'
+            size='1.6rem'
+          />
         </TitleContainer>
 
-        {exercises &&
+        {!isEmpty(exercises) ? (
           exercises.map((exercise) => {
             return (
               <ExerciseSummary
@@ -41,7 +42,10 @@ class Exercise extends Component {
                 deleteExercise={deleteExercise}
               />
             );
-          })}
+          })
+        ) : (
+          <NoData text='No Exercises' />
+        )}
       </Container>
     );
   }
@@ -54,6 +58,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getExercises: () => dispatch(getExercises()),
   deleteExercise: (id) => dispatch(deleteExercise(id)),
+  createExercise: (name, weight, sets, reps, type, date) =>
+    dispatch(createExercise(name, weight, sets, reps, type, date)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Exercise);

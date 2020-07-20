@@ -3,7 +3,8 @@ import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { getWorkouts, clearWorkout } from 'actions';
-import { WorkoutSummary, NoWorkouts } from 'components/workouts/workouts';
+import { WorkoutSummary } from 'components/workouts/workouts';
+import { NoData } from 'components/common/empty';
 import {
   Title2,
   TitleContainer,
@@ -48,7 +49,7 @@ class Workouts extends Component {
             );
           })
         ) : (
-          <NoWorkouts />
+          <NoData text='No Workouts' />
         )}
       </Container>
     );

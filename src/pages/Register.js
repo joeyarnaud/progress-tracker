@@ -44,9 +44,11 @@ class Register extends Component {
           password: password,
         })
         .then((res) => {
-          this.props.setCurrentUser(res.data.token);
+          console.log(res.data);
+          this.props.setCurrentUser(res.data);
         })
         .catch((err) => {
+          console.log(err.response);
           this.setState({ serverError: err.response.data.errors });
         });
     }
@@ -99,12 +101,12 @@ class Register extends Component {
     } = this.state;
 
     const { auth } = this.props;
-    const { token } = auth;
+    const { tokenInfo } = auth;
 
     console.log(this.props);
-    console.log(token);
+    console.log(tokenInfo);
 
-    return isEmpty(token) ? (
+    return isEmpty(tokenInfo) ? (
       <LandingContainer>
         <OverlayContainer>
           <CenteredContainer>

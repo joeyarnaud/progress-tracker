@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
+export const Container = styled.div`
   background-color: ${(props) => props.theme.colors.colorWhite};
   padding: 2rem;
   border-radius: 10px;
@@ -10,9 +9,3 @@ const Container = styled.div`
   font-size: 2rem;
   color: ${(props) => props.theme.colors.colorDanger};
 `;
-
-function NoWorkouts() {
-  return <Container>No Workouts</Container>;
-}
-
-export { NoWorkouts };

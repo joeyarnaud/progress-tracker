@@ -8,15 +8,12 @@ import {
   GET_EXERCISE_REQUEST,
   GET_EXERCISE_SUCCESS,
   GET_EXERCISE_FAILURE,
-  DELETE_EXERCISE_INPUT_REQUEST,
-  DELETE_EXERCISE_INPUT_SUCCESS,
-  DELETE_EXERCISE_INPUT_FAILURE,
-  ADD_EXERCISE_INPUT_REQUEST,
-  ADD_EXERCISE_INPUT_SUCCESS,
-  ADD_EXERCISE_INPUT_FAILURE,
   CHANGE_EXERCISE_NAME_REQUEST,
   CHANGE_EXERCISE_NAME_SUCCESS,
   CHANGE_EXERCISE_NAME_FAILURE,
+  CREATE_EXERCISE_REQUEST,
+  CREATE_EXERCISE_SUCCESS,
+  CREATE_EXERCISE_FAILURE,
   CLEAR_EXERCISE,
   CALL_API,
 } from 'types';
@@ -68,43 +65,10 @@ export const getExercise = (id) => ({
 
 /**
  *
- * @param {string} id
- * @param {string} inputId
- * @desc delete an input for an exercise
+ * @param {string} name
+ * @param {number} id
+ * @desc changes the name of the exercise
  */
-export const deleteInput = (id, inputId) => ({
-  [CALL_API]: {
-    endpoint: `/exercise/${id}/delete-input/${inputId}`,
-    method: 'PUT',
-    types: [
-      DELETE_EXERCISE_INPUT_REQUEST,
-      DELETE_EXERCISE_INPUT_SUCCESS,
-      DELETE_EXERCISE_INPUT_FAILURE,
-    ],
-  },
-});
-
-/**
- *
- * @param {string} id
- * @param {string} inputId
- * @desc add an input for an exercise
- */
-export const addInput = (id, input) => ({
-  [CALL_API]: {
-    endpoint: `/exercise/${id}/add-input`,
-    method: 'PUT',
-    body: {
-      input,
-    },
-    types: [
-      ADD_EXERCISE_INPUT_REQUEST,
-      ADD_EXERCISE_INPUT_SUCCESS,
-      ADD_EXERCISE_INPUT_FAILURE,
-    ],
-  },
-});
-
 export const changeExerciseName = (name, id) => ({
   [CALL_API]: {
     endpoint: `/exercise/change-name/${id}`,
@@ -116,6 +80,36 @@ export const changeExerciseName = (name, id) => ({
       CHANGE_EXERCISE_NAME_REQUEST,
       CHANGE_EXERCISE_NAME_SUCCESS,
       CHANGE_EXERCISE_NAME_FAILURE,
+    ],
+  },
+});
+
+/**
+ *
+ * @param {string} name
+ * @param {number} weight
+ * @param {number} sets
+ * @param {number} reps
+ * @param {string} type
+ * @param {string} date
+ * @desc create a single exercise
+ */
+export const createExercise = (name, weight, sets, reps, type, date) => ({
+  [CALL_API]: {
+    endpoint: `/exercise`,
+    method: 'POST',
+    body: {
+      name,
+      weight,
+      sets,
+      reps,
+      type,
+      date,
+    },
+    types: [
+      CREATE_EXERCISE_REQUEST,
+      CREATE_EXERCISE_SUCCESS,
+      CREATE_EXERCISE_FAILURE,
     ],
   },
 });
