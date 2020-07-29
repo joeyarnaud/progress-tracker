@@ -44,8 +44,8 @@ export const theme = {
   colors: {
     colorDarkBrown: '#6a594f',
     colorDarkerBrown: '#372E29',
-    colorPrimaryLight: '#9d8a7c',
-    colorPrimary: '#545AC7',
+    colorPrimaryLight: '#9DE1FF',
+    colorPrimary: '#377BFF',
     colorDarkBlue: '#2B9FB3',
     colorLightBrown: '#DFCAC0',
     colorLighterBrown: '#f0e6e2',

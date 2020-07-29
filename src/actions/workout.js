@@ -18,6 +18,12 @@ import {
   CHANGE_WORKOUT_NAME_REQUEST,
   CHANGE_WORKOUT_NAME_SUCCESS,
   CHANGE_WORKOUT_NAME_FAILURE,
+  GET_UNFINISHED_WORKOUTS_REQUEST,
+  GET_UNFINISHED_WORKOUTS_SUCCESS,
+  GET_UNFINISHED_WORKOUTS_FAILURE,
+  SUBMIT_WORKOUT_REQUEST,
+  SUBMIT_WORKOUT_SUCCESS,
+  SUBMIT_WORKOUT_FAILURE,
   CLEAR_WORKOUT,
 } from 'types';
 
@@ -84,6 +90,17 @@ export const deleteWorkout = (id) => ({
   },
 });
 
+/**
+ *
+ * @param {string} workout_id
+ * @param {string} name
+ * @param {number} weight
+ * @param {number} sets
+ * @param {number} reps
+ * @param {string} type
+ * @param {date} date
+ * @desc Add an exercise to the workout of workout_id
+ */
 export const addExercise = (
   workout_id,
   name,
@@ -112,6 +129,12 @@ export const addExercise = (
   },
 });
 
+/**
+ *
+ * @param {string} name
+ * @param {string} id
+ * @desc change the name of the workout
+ */
 export const changeName = (name, id) => ({
   [CALL_API]: {
     endpoint: `/workout/change-name/${id}`,
@@ -123,6 +146,33 @@ export const changeName = (name, id) => ({
       CHANGE_WORKOUT_NAME_REQUEST,
       CHANGE_WORKOUT_NAME_SUCCESS,
       CHANGE_WORKOUT_NAME_FAILURE,
+    ],
+  },
+});
+
+/**
+ * @desc get all the unfinished workouts
+ */
+export const getUnsubmittedWorkouts = () => ({
+  [CALL_API]: {
+    endpoint: `/workout/unfinished`,
+    method: 'GET',
+    types: [
+      GET_UNFINISHED_WORKOUTS_REQUEST,
+      GET_UNFINISHED_WORKOUTS_SUCCESS,
+      GET_UNFINISHED_WORKOUTS_FAILURE,
+    ],
+  },
+});
+
+export const submitWorkout = (id) => ({
+  [CALL_API]: {
+    endpoint: `/workout/submit/${id}`,
+    method: 'PUT',
+    types: [
+      SUBMIT_WORKOUT_REQUEST,
+      SUBMIT_WORKOUT_SUCCESS,
+      SUBMIT_WORKOUT_FAILURE,
     ],
   },
 });

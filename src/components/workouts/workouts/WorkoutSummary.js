@@ -30,9 +30,15 @@ const ExerciseContentContainer = styled.div`
 `;
 
 function WorkoutSummary(props) {
-  const { date, exercises, name, id } = props;
+  const { date, exercises, name, id, quickstart } = props;
   return (
-    <Container to={`/workout/${id}`}>
+    <Container
+      to={
+        quickstart
+          ? `/quick-start/workout/${id}?exercise=${exercises.length}`
+          : `/workout/${id}`
+      }
+    >
       <FlexBoxBetween>
         <ContentContainer>Workout Name: {name}</ContentContainer>
         <ContentContainer>{moment(date).format('DD/MM/yyyy')}</ContentContainer>
@@ -48,5 +54,9 @@ function WorkoutSummary(props) {
     </Container>
   );
 }
+
+WorkoutSummary.defaultProps = {
+  quickstart: false,
+};
 
 export { WorkoutSummary };

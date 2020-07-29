@@ -1,4 +1,5 @@
 import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 import setAuthToken from 'utils/setAuthToken';
 import { LOGOUT_USER, SET_CURRENT_USER, REFRESH_TOKEN_FAILURE } from 'types';
 import { deleteTokens, setTokens } from 'utils/localStorage';
@@ -12,6 +13,8 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case LOGOUT_USER:
       localStorage.clear();
+      axios.interceptors.request.eject();
+      axios.interceptors.response.eject();
       return Object.assign({}, state, initialState);
     case SET_CURRENT_USER:
       setTokens(action.payload);

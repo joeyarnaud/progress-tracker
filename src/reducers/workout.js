@@ -20,6 +20,9 @@ import {
   CHANGE_WORKOUT_NAME_REQUEST,
   CHANGE_WORKOUT_NAME_SUCCESS,
   CHANGE_WORKOUT_NAME_FAILURE,
+  SUBMIT_WORKOUT_REQUEST,
+  SUBMIT_WORKOUT_SUCCESS,
+  SUBMIT_WORKOUT_FAILURE,
   CLEAR_WORKOUT,
 } from 'types';
 import { isEmpty } from 'helpers';
@@ -93,6 +96,12 @@ export default function (state = initialState, action) {
     case CHANGE_WORKOUT_NAME_SUCCESS:
       return { ...state, loading: false, workout: action.payload };
     case CHANGE_WORKOUT_NAME_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+    case SUBMIT_WORKOUT_REQUEST:
+      return { ...state, loading: true };
+    case SUBMIT_WORKOUT_SUCCESS:
+      return { ...state, loading: false, workout: action.payload };
+    case SUBMIT_WORKOUT_FAILURE:
       return { ...state, loading: false, error: action.payload };
     case CLEAR_WORKOUT:
       return { workouts: [], loading: false, workout: {}, error: {} };

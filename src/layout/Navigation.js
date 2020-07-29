@@ -65,9 +65,11 @@ function Navigation(props) {
             >
               Logout
             </NavDropdown.Item>
-            <NavDropdown.Item style={{ color: '#343A40' }}>
-              Settings
-            </NavDropdown.Item>
+            {
+              //   <NavDropdown.Item style={{ color: '#343A40' }}>
+              //   Settings
+              // </NavDropdown.Item>
+            }
           </Dropdown>
         </Nav>
       </Navbar.Collapse>

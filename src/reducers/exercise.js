@@ -21,6 +21,7 @@ import {
   DELETE_INPUT_SUCCESS,
   DELETE_INPUT_FAILURE,
 } from 'types';
+import { isEmpty } from 'helpers';
 
 const initialState = {
   exercises: [],
@@ -70,14 +71,16 @@ export default function (state = initialState, action) {
     case ADD_INPUT_REQUEST:
       return { ...state, loading: true };
     case ADD_INPUT_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        exercise: {
-          ...state.exercise,
-          inputs: [...state.exercise.inputs, action.payload],
-        },
-      };
+      return !isEmpty(state.exercise)
+        ? {
+            ...state,
+            loading: false,
+            exercise: {
+              ...state.exercise,
+              inputs: [...state.exercise.inputs, action.payload],
+            },
+          }
+        : state;
     case ADD_INPUT_FAILURE:
       return { ...state, loading: false, error: action.payload };
     case CHANGE_EXERCISE_NAME_REQUEST:

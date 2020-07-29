@@ -45,6 +45,21 @@ const Exercise = Loadable({
   loading: Loader,
 });
 
+const QuickStart = Loadable({
+  loader: () => import('pages/QuickStart'),
+  loading: Loader,
+});
+
+const QuickStartWorkout = Loadable({
+  loader: () => import('pages/QuickStartWorkout'),
+  loading: Loader,
+});
+
+const PlayWorkout = Loadable({
+  loader: () => import('pages/PlayWorkout'),
+  loading: Loader,
+});
+
 export default function Router() {
   return (
     <BrowserRouter>
@@ -60,6 +75,17 @@ export default function Router() {
             <PrivateRoute path='/workouts' component={Workouts} exact />
             <PrivateRoute path='/exercises' component={Exercises} exact />
             <PrivateRoute path='/exercise/:id' component={Exercise} exact />
+            <PrivateRoute path='/quick-start' component={QuickStart} exact />
+            <PrivateRoute
+              path='/quick-start/workout/:id'
+              component={QuickStartWorkout}
+              exact
+            />
+            <PrivateRoute
+              path='/workout/play/:id'
+              component={PlayWorkout}
+              exact
+            />
           </Switch>
         </PrivateRoute>
       </Switch>

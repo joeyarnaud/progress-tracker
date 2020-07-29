@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { getWorkouts } from 'actions';
+import { QuickStartButton } from 'components/common/buttons';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -9,7 +10,11 @@ class Dashboard extends Component {
   }
 
   render() {
-    return <Container>dashboard</Container>;
+    return (
+      <Container>
+        <QuickStartButton to='/quick-start'>Quick Start</QuickStartButton>
+      </Container>
+    );
   }
 }
 

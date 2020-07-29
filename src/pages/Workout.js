@@ -17,7 +17,11 @@ import {
 } from 'components/workouts/add-workout/commonElems';
 import { Title4, FlexBoxBetween } from 'components/common/styled-components';
 import { ExerciseSummary } from 'components/exercise/ExerciseSummary';
-import { CustomToggle, BlankButton } from 'components/common/buttons';
+import {
+  CustomToggle,
+  BlankButton,
+  QuickStartButton,
+} from 'components/common/buttons';
 import { WarningModal, AddExerciseModal } from 'components/common/modals';
 import { isEmpty } from 'helpers';
 
@@ -121,6 +125,9 @@ class Workout extends Component {
           </div>
         </FlexBoxBetween>
         <Container>
+          <QuickStartButton to={`/workout/play/${_id}?exercise=0`}>
+            Start Workout
+          </QuickStartButton>
           {exercises &&
             exercises.map((exercise) => {
               return (

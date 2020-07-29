@@ -12,7 +12,7 @@ export const ExerciseContainer = styled.div`
 export const TitleContainer = styled(Form.Group)``;
 
 export const TitleLabel = styled(Form.Label)`
-  /* font-size: 1.4rem; */
+  font-size: 1.6rem;
 `;
 
 export const TitleInput = styled(Form.Control)`
@@ -24,7 +24,7 @@ export const ExerciseInputContainer = styled(Form.Group)`
 `;
 
 export const ExerciseInputLabel = styled(Form.Label)`
-  /* font-size: 1.2rem; */
+  font-size: 1.4rem;
 `;
 
 export const ExerciseInput = styled(Form.Control)`
