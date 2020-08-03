@@ -21,6 +21,7 @@ export const TitleInput = styled(Form.Control)`
 
 export const ExerciseInputContainer = styled(Form.Group)`
   position: relative;
+  width: 100%;
 `;
 
 export const ExerciseInputLabel = styled(Form.Label)`
@@ -30,6 +31,7 @@ export const ExerciseInputLabel = styled(Form.Label)`
 export const ExerciseInput = styled(Form.Control)`
   width: 28rem;
   font-size: 1.6rem;
+  width: 100%;
 `;
 
 export const Container = styled.div`
@@ -39,7 +41,7 @@ export const Container = styled.div`
 
 export const MarginRight = styled.div`
   margin-right: 2rem;
-  display: inline;
+  /* display: inline; */
 `;
 
 export const Select = styled.select`

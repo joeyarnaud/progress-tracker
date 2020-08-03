@@ -13,13 +13,14 @@ const NavContainer = styled(Navbar)`
 `;
 
 const Brand = styled(Navbar.Brand)`
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: ${(props) => props.theme.colors.colorWhite};
 `;
 
 const Link = styled(Nav.Link)`
   margin: 0 2rem;
   color: ${(props) => props.theme.colors.colorWhite};
+  font-size: 1.2rem;
 `;
 
 const Dropdown = styled(NavDropdown)`
@@ -32,9 +33,9 @@ function Navigation(props) {
   const { auth } = props;
   const { tokenInfo } = auth;
   return !isEmpty(tokenInfo) ? (
-    <NavContainer collapseOnSelect expand='lg' bg='dark'>
+    <NavContainer collapseOnSelect bg='dark'>
       <Brand to='/dashboard' as={NavLink}>
-        Progress Tracker
+        Progress Tracker <i className='fas fa-chart-line'></i>
       </Brand>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse id='responsive-navbar-nav'>
@@ -44,9 +45,6 @@ function Navigation(props) {
           </Link>
           <Link to='/exercises' as={NavLink}>
             <i className='fad fa-dumbbell'></i> Exercises
-          </Link>
-          <Link to='/progress' as={NavLink}>
-            <i className='fas fa-chart-line'></i> Progress
           </Link>
         </Nav>
         <Nav>

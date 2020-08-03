@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
 import Label from './FormLabel';
-import { ErrorText } from './CommonElems';
+import { ErrorText } from './common';
 
 function InputEmail(props) {
   const { handleChange, value, error } = props;

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { setTokens, getTokens } from './localStorage';
 
 const setAuthToken = () => {
-  axios.interceptors.request.use((config) => {
+  const reqInterceptor = axios.interceptors.request.use((config) => {
     const { token } = getTokens();
     if (token) {
       config.headers.Authorization = `bearer ${token}`;
@@ -13,7 +13,7 @@ const setAuthToken = () => {
     return config;
   });
 
-  axios.interceptors.response.use(
+  const resInterceptor = axios.interceptors.response.use(
     (config) => {
       return config;
     },
@@ -49,6 +49,8 @@ const setAuthToken = () => {
       return Promise.reject(error);
     }
   );
+
+  return { reqInterceptor, resInterceptor };
 };
 
 export default setAuthToken;

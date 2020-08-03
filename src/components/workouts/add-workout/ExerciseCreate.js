@@ -14,7 +14,8 @@ import {
   ExerciseInputLabel,
   Select,
   MarginRight,
-} from './commonElems';
+} from './common';
+import { FlexBox } from 'components/common/styled-components';
 
 const TITLE_INPUT = 'TITLE_INPUT';
 const WEIGHT_INPUT = 'WEIGHT_INPUT';
@@ -126,30 +127,32 @@ export function ExerciseCreate(props) {
           />
         </ExerciseInputContainer>
       </ExerciseContainer>
-      <MarginRight>
-        <Button
-          variant='outline-success'
-          size='lg'
-          disabled={isEmpty(name) || isEmpty(sets)}
-          onClick={() =>
-            handleSubmit({
-              name,
-              weight,
-              reps,
-              sets,
-              type: type,
-              submitted: true,
-              date,
-            })
-          }
-        >
-          Submit
-        </Button>
-      </MarginRight>
+      <FlexBox>
+        <MarginRight>
+          <Button
+            variant='outline-success'
+            size='lg'
+            disabled={isEmpty(name) || isEmpty(sets)}
+            onClick={() =>
+              handleSubmit({
+                name,
+                weight,
+                reps,
+                sets,
+                type: type,
+                submitted: true,
+                date,
+              })
+            }
+          >
+            Submit
+          </Button>
+        </MarginRight>
 
-      <Button variant='danger' size='lg' onClick={() => cancelExercise()}>
-        Cancel
-      </Button>
+        <Button variant='danger' size='lg' onClick={() => cancelExercise()}>
+          Cancel
+        </Button>
+      </FlexBox>
     </Container>
   );
 }

@@ -13,10 +13,7 @@ import {
   Select,
   MarginRight,
 } from 'components/workouts/add-workout';
-
-const InfoContainer = styled.div`
-  padding-top: 2rem;
-`;
+import { InfoContainer } from 'components/quick-start';
 
 const TITLE_INPUT = 'TITLE_INPUT';
 const WEIGHT_INPUT = 'WEIGHT_INPUT';
@@ -130,9 +127,15 @@ function ExerciseSlide(props) {
             />
           </ExerciseInputContainer>
         </ExerciseContainer>
-        <MarginRight>
+        <div
+          style={{
+            textAlign: 'center',
+            borderBottom: '1px solid white',
+            paddingBottom: '2rem',
+          }}
+        >
           <Button
-            variant='outline-success'
+            variant='success'
             size='lg'
             disabled={isEmpty(name) || isEmpty(sets)}
             onClick={() => {
@@ -142,7 +145,7 @@ function ExerciseSlide(props) {
           >
             Submit Exercise
           </Button>
-        </MarginRight>
+        </div>
       </Container>
     </InfoContainer>
   );

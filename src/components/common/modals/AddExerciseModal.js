@@ -16,6 +16,7 @@ import {
   Select,
   MarginRight,
 } from 'components/workouts/add-workout';
+import { FlexBox } from '../styled-components';
 
 Modal.setAppElement('#root');
 
@@ -32,11 +33,13 @@ const customStyles = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    width: '80%',
+    height: '80%',
   },
 };
 
-const DeleteButton = styled.button`
-  color: ${(props) => props.theme.colors.colorDanger};
+const AddButton = styled.button`
+  color: ${(props) => props.theme.colors.colorDark};
   background-color: inherit;
   border: none;
   margin-top: 1.5rem;
@@ -109,13 +112,13 @@ const AddExerciseModal = (props) => {
 
   return (
     <React.Fragment>
-      <DeleteButton
+      <AddButton
         style={{ fontSize: size }}
         onClick={() => setModalVisible(true)}
       >
         <i className='fas fa-plus-circle'></i>
         {' ' + buttonText}
-      </DeleteButton>
+      </AddButton>
       <Modal
         isOpen={isOpen}
         onRequestClose={() => setModalVisible(false)}
@@ -199,26 +202,27 @@ const AddExerciseModal = (props) => {
                 />
               </ExerciseInputContainer>
             </ExerciseContainer>
-            <MarginRight>
-              <Button
-                variant='outline-success'
-                size='lg'
-                disabled={isEmpty(name) || isEmpty(sets)}
-                onClick={() => {
-                  !isEmpty(id)
-                    ? action(id, name, weight, sets, reps, type, date)
-                    : action(name, weight, sets, reps, type, date);
-                  setModalVisible(false);
-                  dispatch({ type: CLEAR });
-                }}
-              >
-                Submit
+            <FlexBox>
+              <MarginRight>
+                <Button
+                  variant='outline-success'
+                  size='lg'
+                  disabled={isEmpty(name) || isEmpty(sets)}
+                  onClick={() => {
+                    !isEmpty(id)
+                      ? action(id, name, weight, sets, reps, type, date)
+                      : action(name, weight, sets, reps, type, date);
+                    setModalVisible(false);
+                    dispatch({ type: CLEAR });
+                  }}
+                >
+                  Submit
+                </Button>
+              </MarginRight>
+              <Button variant='danger' size='lg'>
+                Cancel
               </Button>
-            </MarginRight>
-
-            <Button variant='danger' size='lg'>
-              Cancel
-            </Button>
+            </FlexBox>
           </Container>
           <ModalExit onClick={() => setModalVisible(false)}>
             <i className='fas fa-times-circle'></i>

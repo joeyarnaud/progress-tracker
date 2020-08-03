@@ -15,12 +15,12 @@ import { isEmpty } from 'helpers';
 import {
   TitleContainer,
   TitleInput,
-} from 'components/workouts/add-workout/commonElems';
+} from 'components/workouts/add-workout/common';
 import ExerciseChart from 'components/exercise/exercise-charts/ExerciseChart';
 import { Title4, FlexBoxBetween } from 'components/common/styled-components';
 import { CustomToggle, BlankButton } from 'components/common/buttons';
-import { InputSummary } from 'components/exercise/InputSummary';
 import { WarningModal, AddInputModal } from 'components/common/modals';
+import { InputSummary } from 'components/common/summary';
 
 class Exercise extends Component {
   state = {
@@ -61,7 +61,7 @@ class Exercise extends Component {
 
   render() {
     const { exercise } = this.props;
-    const { date, inputs, name, workouts, _id, deleted } = exercise.exercise;
+    const { date, inputs, name, _id, deleted } = exercise.exercise;
     const { edit, title } = this.state;
 
     return deleted ? (

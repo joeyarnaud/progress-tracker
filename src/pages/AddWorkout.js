@@ -12,7 +12,7 @@ import {
   TitleContainer,
   TitleLabel,
   TitleInput,
-} from 'components/workouts/add-workout/commonElems';
+} from 'components/workouts/add-workout/common';
 import { postWorkout, clearWorkout } from 'actions';
 
 const Title = styled.h2`

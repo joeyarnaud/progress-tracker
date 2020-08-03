@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { getWorkouts, clearWorkout } from 'actions';
-import { WorkoutSummary } from 'components/workouts/workouts';
+import { WorkoutSummary } from 'components/common/summary';
 import { NoData } from 'components/common/empty';
 import {
   Title2,
@@ -13,7 +13,7 @@ import {
 import { isEmpty } from 'helpers';
 
 const Title = styled(Title2)`
-  color: ${(props) => props.theme.colors.colorInfo};
+  color: ${(props) => props.theme.colors.colorDark};
 `;
 
 class Workouts extends Component {

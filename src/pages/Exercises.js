@@ -4,13 +4,13 @@ import { Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { getExercises, deleteExercise, createExercise } from 'actions';
 import { TitleContainer, Title2 } from 'components/common/styled-components';
-import { ExerciseSummary } from 'components/exercise/ExerciseSummary';
+import { ExerciseSummary } from 'components/common/summary';
 import { AddExerciseModal } from 'components/common/modals';
 import { NoData } from 'components/common/empty';
 import { isEmpty } from 'helpers';
 
 const Title = styled(Title2)`
-  color: ${(props) => props.theme.colors.colorInfo};
+  color: ${(props) => props.theme.colors.colorDark};
 `;
 
 class Exercise extends Component {

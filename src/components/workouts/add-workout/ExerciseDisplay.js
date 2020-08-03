@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { ExerciseContainer } from './commonElems';
+import { ExerciseContainer } from './common';
 
 const DisplayContainer = styled(ExerciseContainer)`
   background-color: ${(props) => props.theme.colors.colorWhite};

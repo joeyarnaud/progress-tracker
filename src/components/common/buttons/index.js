@@ -1,2 +1,2 @@
 export * from './EllipsesDropdown';
-export * from './buttonStyles';
+export * from './common';

@@ -1,3 +1,3 @@
 export * from './ExerciseDisplay';
 export * from './ExerciseCreate';
-export * from './commonElems';
+export * from './common';

@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  background-color: #f0f0f0;
+  background-color: #9DE1FF;
   box-sizing: border-box;
   color: #39312E;
 }
@@ -46,6 +46,7 @@ export const theme = {
     colorDarkerBrown: '#372E29',
     colorPrimaryLight: '#9DE1FF',
     colorPrimary: '#377BFF',
+    colorDark: '#343a40',
     colorDarkBlue: '#2B9FB3',
     colorLightBrown: '#DFCAC0',
     colorLighterBrown: '#f0e6e2',

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import qs from 'query-string';
 import {
   StartContainer,
   ExerciseSlidePlay,
   Title,
   WorkoutFinished,
+  QSContainer,
 } from 'components/quick-start';
 import { getWorkout, addInput } from 'actions';
 import { isEmpty } from 'helpers';
@@ -52,28 +52,28 @@ class PlayWorkout extends Component {
   render() {
     const { currentExercise } = this.state;
     const { name, exercises, _id } = this.props.workout;
-    console.log(this.props);
-    console.log(this.state);
 
     return (
       <StartContainer>
-        <Title>{name}</Title>
-        {!isEmpty(exercises) && currentExercise !== exercises.length ? (
-          exercises.map((ex, index) => {
-            if (index === currentExercise) {
-              return (
-                <ExerciseSlidePlay
-                  name={ex.name}
-                  id={ex._id}
-                  submitExercise={this.addInput}
-                  {...ex.inputs[ex.inputs.length - 1]}
-                />
-              );
-            }
-          })
-        ) : (
-          <WorkoutFinished id={_id} />
-        )}
+        <QSContainer>
+          <Title>{name}</Title>
+          {!isEmpty(exercises) && currentExercise !== exercises.length ? (
+            exercises.map((ex, index) => {
+              if (index === currentExercise) {
+                return (
+                  <ExerciseSlidePlay
+                    name={ex.name}
+                    id={ex._id}
+                    submitExercise={this.addInput}
+                    {...ex.inputs[ex.inputs.length - 1]}
+                  />
+                );
+              }
+            })
+          ) : (
+            <WorkoutFinished id={_id} />
+          )}
+        </QSContainer>
       </StartContainer>
     );
   }

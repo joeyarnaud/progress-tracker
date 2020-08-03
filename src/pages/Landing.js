@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 import axios from 'axios';
@@ -13,7 +14,7 @@ import {
   SubmitButton,
   Center,
   Text,
-} from 'components/auth/CommonElems';
+} from 'components/auth/common';
 import { Title1 } from 'components/common/styled-components';
 import { setCurrentUser } from 'actions';
 import { isEmpty } from 'helpers';
@@ -24,7 +25,9 @@ const Landing = (props) => {
     <LandingContainer>
       <OverlayContainer>
         <CenteredContainer>
-          <Title1>Progress Tracker</Title1>
+          <Title1>
+            Progress Tracker <i className='fas fa-chart-line'></i>
+          </Title1>
           <Formik
             initialValues={{ email: '', password: '' }}
             validate={(values) => {
@@ -38,7 +41,6 @@ const Landing = (props) => {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              console.log('here');
               setTimeout(() => {
                 setSubmitting(false);
               }, 2000);
@@ -49,7 +51,6 @@ const Landing = (props) => {
                   password: values.password,
                 })
                 .then((res) => {
-                  console.log(res.data);
                   props.setCurrentUser(res.data);
                 })
                 .catch((err) => {});
@@ -96,5 +97,10 @@ const Landing = (props) => {
 const mapStateToProps = (state) => ({
   token: state.auth.tokenInfo,
 });
+
+Landing.propTypes = {
+  token: PropTypes.object.isRequired,
+  setCurrentUser: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, { setCurrentUser })(Landing);

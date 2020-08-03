@@ -57,7 +57,7 @@ export default function (state = initialState, action) {
         loading: false,
         workout: {
           ...state.workout,
-          exercises: [...state.workout.exercises, action.payload],
+          ...action.payload,
         },
       };
     case ADD_EXERCISE_TO_WORKOUT_FAILURE:

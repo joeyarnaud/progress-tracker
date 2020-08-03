@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -15,7 +16,7 @@ import {
   Center,
   Text,
   ErrorText,
-} from 'components/auth/CommonElems';
+} from 'components/auth/common';
 import { Title1 } from 'components/common/styled-components';
 import { isEmpty } from 'helpers';
 
@@ -103,14 +104,13 @@ class Register extends Component {
     const { auth } = this.props;
     const { tokenInfo } = auth;
 
-    console.log(this.props);
-    console.log(tokenInfo);
-
     return isEmpty(tokenInfo) ? (
       <LandingContainer>
         <OverlayContainer>
           <CenteredContainer>
-            <Title1>Progress Tracker</Title1>
+            <Title1 style={{ marginBottom: '2rem' }}>
+              Progress Tracker <i className='fas fa-chart-line'></i>
+            </Title1>
             <Form>
               <InputText
                 handleChange={this.handleStandardChange}
@@ -163,5 +163,10 @@ class Register extends Component {
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
+
+Register.propTypes = {
+  auth: PropTypes.object.isRequired,
+  setCurrentUser: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, { setCurrentUser })(Register);

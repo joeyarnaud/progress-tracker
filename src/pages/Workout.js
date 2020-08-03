@@ -14,9 +14,9 @@ import {
 import {
   TitleContainer,
   TitleInput,
-} from 'components/workouts/add-workout/commonElems';
+} from 'components/workouts/add-workout/common';
 import { Title4, FlexBoxBetween } from 'components/common/styled-components';
-import { ExerciseSummary } from 'components/exercise/ExerciseSummary';
+import { ExerciseSummary } from 'components/common/summary';
 import {
   CustomToggle,
   BlankButton,
@@ -125,8 +125,11 @@ class Workout extends Component {
           </div>
         </FlexBoxBetween>
         <Container>
-          <QuickStartButton to={`/workout/play/${_id}?exercise=0`}>
-            Start Workout
+          <QuickStartButton
+            to={`/workout/play/${_id}?exercise=0`}
+            style={{ marginBottom: '2rem' }}
+          >
+            Start Workout <i className='fas fa-play-circle'></i>
           </QuickStartButton>
           {exercises &&
             exercises.map((exercise) => {

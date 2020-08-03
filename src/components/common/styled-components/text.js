@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Title1 = styled.h1`
-  font-size: 5rem;
+  font-size: 4rem;
   font-family: ${(props) => props.theme.fontStyles.boldest};
   text-align: center;
   color: ${(props) => props.theme.colors.colorWhite};

@@ -7,9 +7,8 @@ import {
   InfoContainer,
   ButtonContainer,
   InfoImportant,
-  InfoFurther,
 } from 'components/quick-start';
-import { WorkoutSummary } from 'components/workouts/workouts';
+import { WorkoutSummary } from 'components/common/summary';
 import { isEmpty } from 'helpers';
 
 const TitleContainer = styled(Form.Group)`
@@ -40,11 +39,7 @@ function InfoSlide(props) {
   return (
     <InfoPageContainer>
       <InfoContainer>
-        <InfoImportant>Start Workout</InfoImportant>
-        <InfoFurther>
-          Enter the information as you workout and the workout will be saved to
-          your workouts as you go along
-        </InfoFurther>
+        <InfoImportant>Quick Start Workout</InfoImportant>
         <TitleContainer>
           <TitleLabel>Workout Name *</TitleLabel>
           <FormControl
@@ -59,10 +54,10 @@ function InfoSlide(props) {
         </TitleContainer>
       </InfoContainer>
       <ButtonContainer>
-        <StartButton variant='primary' onClick={() => startWorkout()}>
+        <StartButton variant='success' onClick={() => startWorkout()}>
           Start Workout
         </StartButton>
-        <StartButton variant='secondary' href='/dashboard'>
+        <StartButton variant='info' href='/dashboard'>
           Back To Dashboard
         </StartButton>
       </ButtonContainer>

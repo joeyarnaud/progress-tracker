@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { InfoSlide, StartContainer } from 'components/quick-start';
+import { InfoSlide, StartContainer, QSContainer } from 'components/quick-start';
 import {
   createExercise,
   addExercise,
@@ -43,13 +43,15 @@ class QuickStart extends Component {
 
     return (
       <StartContainer>
-        <InfoSlide
-          startWorkout={this.startWorkout}
-          workoutName={workoutName}
-          changeWorkoutName={this.handleStandardChange}
-          error={error}
-          workouts={unfinishedWorkouts}
-        />
+        <QSContainer>
+          <InfoSlide
+            startWorkout={this.startWorkout}
+            workoutName={workoutName}
+            changeWorkoutName={this.handleStandardChange}
+            error={error}
+            workouts={unfinishedWorkouts}
+          />
+        </QSContainer>
       </StartContainer>
     );
   }

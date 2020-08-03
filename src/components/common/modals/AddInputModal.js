@@ -33,7 +33,7 @@ const customStyles = {
 };
 
 const AddButton = styled.button`
-  color: ${(props) => props.theme.colors.colorDanger};
+  color: ${(props) => props.theme.colors.colorDark};
   background-color: inherit;
   border: none;
   margin-top: 1.5rem;
@@ -61,7 +61,6 @@ const CHANGE_DATE = 'CHANGE_DATE';
 const CLEAR = 'CLEAR';
 
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case TITLE_INPUT:
       return { ...state, name: action.payload };
