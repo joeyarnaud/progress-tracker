@@ -7,8 +7,8 @@
     "static/js/1.1592a623.chunk.js.map": "/progress-tracker/static/js/1.1592a623.chunk.js.map",
     "static/js/2.0b1ba476.chunk.js": "/progress-tracker/static/js/2.0b1ba476.chunk.js",
     "static/js/2.0b1ba476.chunk.js.map": "/progress-tracker/static/js/2.0b1ba476.chunk.js.map",
-    "main.js": "/progress-tracker/static/js/main.7ccfcf73.chunk.js",
-    "main.js.map": "/progress-tracker/static/js/main.7ccfcf73.chunk.js.map",
+    "main.js": "/progress-tracker/static/js/main.784ee7b1.chunk.js",
+    "main.js.map": "/progress-tracker/static/js/main.784ee7b1.chunk.js.map",
     "runtime-main.js": "/progress-tracker/static/js/runtime-main.e746a71a.js",
     "runtime-main.js.map": "/progress-tracker/static/js/runtime-main.e746a71a.js.map",
     "static/js/5.25dc5b70.chunk.js": "/progress-tracker/static/js/5.25dc5b70.chunk.js",
@@ -41,7 +41,7 @@
     "static/js/18.b7f32e58.chunk.js": "/progress-tracker/static/js/18.b7f32e58.chunk.js",
     "static/js/18.b7f32e58.chunk.js.map": "/progress-tracker/static/js/18.b7f32e58.chunk.js.map",
     "index.html": "/progress-tracker/index.html",
-    "precache-manifest.ca836564b78ad73a123cca0230ffb3e3.js": "/progress-tracker/precache-manifest.ca836564b78ad73a123cca0230ffb3e3.js",
+    "precache-manifest.9a08f1f943becace8adcb3d6e2898a5a.js": "/progress-tracker/precache-manifest.9a08f1f943becace8adcb3d6e2898a5a.js",
     "service-worker.js": "/progress-tracker/service-worker.js",
     "static/css/0.8dbe6964.chunk.css.map": "/progress-tracker/static/css/0.8dbe6964.chunk.css.map",
     "static/css/6.ed439b8d.chunk.css.map": "/progress-tracker/static/css/6.ed439b8d.chunk.css.map",
@@ -54,6 +54,6 @@
     "static/js/runtime-main.e746a71a.js",
     "static/css/6.ed439b8d.chunk.css",
     "static/js/6.e9310e49.chunk.js",
-    "static/js/main.7ccfcf73.chunk.js"
+    "static/js/main.784ee7b1.chunk.js"
   ]
 }
