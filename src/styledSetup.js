@@ -60,7 +60,6 @@ export const theme = {
     colorWarning: '#E38C2A',
     colorSuccess: '#C4AD57',
     colorInfo: '#72DDE8',
-    colorDark: '#343A40',
   },
   fonts: {
     fontFancy: "'Signika', sans-serif",
