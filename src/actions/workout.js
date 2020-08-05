@@ -165,6 +165,11 @@ export const getUnsubmittedWorkouts = () => ({
   },
 });
 
+/**
+ *
+ * @param {string} id
+ * @desc submit a workout
+ */
 export const submitWorkout = (id) => ({
   [CALL_API]: {
     endpoint: `/workout/submit/${id}`,

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Relative = styled.div`
+  width: calc(100% - 4rem);
   position: relative;
 `;
 
