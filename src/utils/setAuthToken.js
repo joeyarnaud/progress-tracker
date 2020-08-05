@@ -23,7 +23,7 @@ const setAuthToken = () => {
 
       if (
         error.response.status === 401 &&
-        originalRequest.url === 'http://localhost:8080/api/auth/token'
+        originalRequest.url === `${process.env.REACT_APP_API_URL}/auth/token`
       ) {
         return Promise.reject(error);
       }
