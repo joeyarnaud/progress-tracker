@@ -67,7 +67,6 @@ const CHANGE_DATE = 'CHANGE_DATE';
 const CLEAR = 'CLEAR';
 
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case TITLE_INPUT:
       return { ...state, name: action.payload };
@@ -135,8 +134,6 @@ const AddExerciseModal = (props) => {
                 placeholder='Exercise Name'
                 value={name}
                 onChange={(e) => {
-                  console.log('here');
-                  console.log(e.target.value);
                   return dispatch({
                     type: TITLE_INPUT,
                     payload: e.target.value,
