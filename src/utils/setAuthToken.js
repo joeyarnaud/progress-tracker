@@ -23,7 +23,7 @@ const setAuthToken = () => {
 
       if (
         error.response.status === 401 &&
-        originalRequest.url === `${process.env.REACT_APP_API_URL}/auth/token`
+        originalRequest.url === `${process.env.REACT_APP_URL_API}/auth/token`
       ) {
         return Promise.reject(error);
       }
@@ -31,7 +31,7 @@ const setAuthToken = () => {
       if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
         return axios
-          .post(`${process.env.REACT_APP_API_URL}/auth/token`, {
+          .post(`${process.env.REACT_APP_URL_API}/auth/token`, {
             refreshToken: refreshToken,
           })
           .then((res) => {

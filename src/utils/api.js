@@ -56,7 +56,7 @@ export default (store) => (next) => (action) => {
 
   return axios({
     method,
-    url: `${process.env.REACT_APP_API_URL}${endpoint}${queryString}`,
+    url: `${process.env.REACT_APP_URL_API}${endpoint}${queryString}`,
     headers,
     onUploadProgress: handleUploadProgress,
     data: body,
