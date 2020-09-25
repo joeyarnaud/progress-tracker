@@ -40,7 +40,7 @@ const Landing = (props) => {
 
               return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={(values, { setSubmitting, setErrors }) => {
               setTimeout(() => {
                 setSubmitting(false);
               }, 2000);
@@ -53,7 +53,12 @@ const Landing = (props) => {
                 .then((res) => {
                   props.setCurrentUser(res.data);
                 })
-                .catch((err) => {});
+                .catch((err) => {
+                  console.log(err.response);
+                  err.response.status === 400
+                    ? setErrors({ password: 'Email or password is incorrect.' })
+                    : setErrors({ password: 'Something went wrong!' });
+                });
             }}
           >
             {({ values, errors, handleChange, handleSubmit, isSubmitting }) => (

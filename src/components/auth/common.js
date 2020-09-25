@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
-import landing from '../../assets/landing.jpeg';
 import { Link } from 'react-router-dom';
 
 export const ErrorText = styled.p`
@@ -9,13 +8,11 @@ export const ErrorText = styled.p`
 `;
 
 export const LandingContainer = styled.div`
-  background: url(${landing}) no-repeat;
   background-size: 100% 100%;
   height: 100vh;
 `;
 
 export const OverlayContainer = styled.div`
-  background-color: rgba(0, 0, 0, 0.3);
   height: 100%;
   width: 100%;
 `;
@@ -25,7 +22,7 @@ export const CenteredContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${(props) => props.theme.colors.colorDark};
   padding: 2rem;
   border-radius: 10px;
   min-width: 50rem;

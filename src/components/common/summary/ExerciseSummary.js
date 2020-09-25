@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import moment from 'moment';
 import { FlexBoxBetween } from 'components/common/styled-components';
 import { WarningModal } from 'components/common/modals';

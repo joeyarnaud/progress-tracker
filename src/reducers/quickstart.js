@@ -4,7 +4,6 @@ import {
   GET_UNFINISHED_WORKOUTS_FAILURE,
   CLEAR_QUICKSTART,
 } from 'types';
-import { isEmpty } from 'helpers';
 
 const initialState = {
   workout: {},

@@ -45,6 +45,7 @@ class Workouts extends Component {
                 exercises={workout.exercises}
                 name={workout.name}
                 id={workout._id}
+                key={workout._id}
               />
             );
           })

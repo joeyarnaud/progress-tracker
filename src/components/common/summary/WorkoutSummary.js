@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { FlexBox, FlexBoxBetween } from 'components/common/styled-components';
 import { ContentContainer, Container } from './common';
@@ -29,9 +28,11 @@ function WorkoutSummary(props) {
       </FlexBoxBetween>
       <FlexBox>
         <ExerciseContentContainer>Exercises: </ExerciseContentContainer>
-        {exercises.map((exercise) => {
+        {exercises.map((exercise, index) => {
           return (
-            <ExerciseContentContainer>{exercise.name}</ExerciseContentContainer>
+            <ExerciseContentContainer key={`exercise-${exercise._id}-${index}`}>
+              {exercise.name}
+            </ExerciseContentContainer>
           );
         })}
       </FlexBox>

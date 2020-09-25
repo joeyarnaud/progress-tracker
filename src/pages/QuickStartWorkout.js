@@ -69,6 +69,8 @@ class QuickStartWorkout extends Component {
             exercises.map((ex, index) => {
               if (index === currentExercise) {
                 return <ExerciseSlideView name={ex.name} {...ex.inputs[0]} />;
+              } else {
+                return null;
               }
             })
           ) : (

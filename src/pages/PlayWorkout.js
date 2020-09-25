@@ -29,7 +29,6 @@ class PlayWorkout extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.location.search !== nextProps.location.search) {
       const { exercise } = qs.parse(nextProps.location.search);
-      console.log(exercise);
       this.setState({
         currentExercise: Number(exercise),
       });
@@ -68,6 +67,8 @@ class PlayWorkout extends Component {
                     {...ex.inputs[ex.inputs.length - 1]}
                   />
                 );
+              } else {
+                return null;
               }
             })
           ) : (

@@ -25,7 +25,6 @@ const CHANGE_DATE = 'CHANGE_DATE';
 const SET_WEIGHT_TYPE = 'SET_WEIGHT_TYPE';
 
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case TITLE_INPUT:
       return { ...state, name: action.payload };

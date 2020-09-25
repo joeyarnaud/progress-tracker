@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
 import { Button, Container } from 'react-bootstrap';
-import styled from 'styled-components';
 import { isEmpty } from 'helpers';
 import {
   ExerciseContainer,
@@ -11,7 +10,6 @@ import {
   ExerciseInput,
   ExerciseInputLabel,
   Select,
-  MarginRight,
 } from 'components/workouts/add-workout';
 import { InfoContainer } from 'components/quick-start';
 

@@ -1,12 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  VictoryLine,
-  VictoryChart,
-  VictoryTheme,
-  VictoryContainer,
-  VictoryAxis,
-} from 'victory';
+import { VictoryLine, VictoryChart, VictoryTheme, VictoryAxis } from 'victory';
 import moment from 'moment';
 import { isEmpty } from 'helpers';
 
