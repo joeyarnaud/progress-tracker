@@ -9,12 +9,13 @@ const Label = styled(Form.Label)`
 `;
 
 function FormLabel(props) {
-  const { text } = props;
-  return <Label>{text}</Label>;
+  const { text, htmlFor } = props;
+  return <Label htmlFor={htmlFor}>{text}</Label>;
 }
 
 FormLabel.propTypes = {
   text: PropTypes.string.isRequired,
+  htmlFor: PropTypes.string.isRequired,
 };
 
 export default FormLabel;

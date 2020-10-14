@@ -9,7 +9,6 @@ import { GlobalStyle, theme } from './styledSetup';
 import api from 'utils/api';
 import rootReducer from './reducers';
 import { setCurrentUser } from './actions/auth';
-import CacheBuster from './CacheBuster';
 
 const Root = ({ children, initialState }) => {
   const middleware = [thunk, api];
@@ -44,21 +43,10 @@ const Root = ({ children, initialState }) => {
   }
 
   return (
-    <CacheBuster>
-      {({ loading, isLatestVersion, refreshCacheAndReload }) => {
-        if (loading) return null;
-        if (!loading && !isLatestVersion) {
-          // You can decide how and when you want to force reload
-          refreshCacheAndReload();
-        }
-        return (
-          <Provider store={store}>
-            <GlobalStyle />
-            <ThemeProvider theme={theme}>{children}</ThemeProvider>
-          </Provider>
-        );
-      }}
-    </CacheBuster>
+    <Provider store={store}>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </Provider>
   );
 };
 

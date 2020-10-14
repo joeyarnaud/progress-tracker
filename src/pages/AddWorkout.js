@@ -124,7 +124,7 @@ function AddWorkout(props) {
         {(isEmpty(exercises) || exercises[exercises.length - 1].submitted) &&
           exercises.length > 0 && (
             <SubmitWorkoutButton
-              onClick={() => props.postWorkout(title, exercises)}
+              onClick={() => props.postWorkout(title, exercises, true)}
               variant='outline-primary'
             >
               Submit Workout
@@ -142,7 +142,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  postWorkout: (title, exercises) => dispatch(postWorkout(title, exercises)),
+  postWorkout: (title, exercises, submitted) =>
+    dispatch(postWorkout(title, exercises, submitted)),
   clearWorkout: () => dispatch(clearWorkout()),
 });
 

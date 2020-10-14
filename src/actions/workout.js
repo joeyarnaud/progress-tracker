@@ -34,13 +34,14 @@ import {
  * @desc creates a workout
  * @method POST
  */
-export const postWorkout = (name, exercises) => ({
+export const postWorkout = (name, exercises, submitted = false) => ({
   [CALL_API]: {
     endpoint: '/workout/create',
     method: 'POST',
     body: {
       name,
       exercises,
+      submitted,
     },
     types: [
       CREATE_WORKOUT_REQUEST,

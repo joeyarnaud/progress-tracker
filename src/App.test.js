@@ -1,9 +1,22 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { mount } from 'enzyme';
+import Root from 'Root';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+let wrapped;
+
+afterEach(() => {
+  wrapped.unmount();
+});
+
+describe('The App component', () => {
+  beforeEach(() => {
+    wrapped = mount(
+      <Root>
+        <App text='Email' />
+      </Root>
+    );
+  });
+
+  it('Renders the form label', () => {});
 });

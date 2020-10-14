@@ -5,8 +5,7 @@ import { Formik } from 'formik';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import InputEmail from 'components/auth/InputEmail';
-import InputPassword from 'components/auth/InputPassword';
+import InputText from 'components/auth/InputText';
 import {
   LandingContainer,
   OverlayContainer,
@@ -63,17 +62,23 @@ const Landing = (props) => {
           >
             {({ values, errors, handleChange, handleSubmit, isSubmitting }) => (
               <Form onSubmit={handleSubmit}>
-                <InputEmail
+                <InputText
                   handleChange={handleChange}
                   value={values.email}
                   error={errors.email}
+                  name='email'
+                  type='email'
+                  placeholder='Email'
+                  text='Email'
                 />
-                <InputPassword
+                <InputText
                   handleChange={handleChange}
                   text='Password'
                   name='password'
                   value={values.password}
                   error={errors.password}
+                  type='password'
+                  placeholder='password'
                 />
                 <Center>
                   <SubmitButton

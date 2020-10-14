@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { setCurrentUser } from 'actions';
-import InputEmail from 'components/auth/InputEmail';
-import InputPassword from 'components/auth/InputPassword';
 import InputText from 'components/auth/InputText';
 import {
   LandingContainer,
@@ -116,23 +114,35 @@ class Register extends Component {
                 handleChange={this.handleStandardChange}
                 value={name}
                 error={errors.name}
+                name='name'
+                type='text'
+                placeholder='Full Name'
+                text='Full Name'
               />
-              <InputEmail
+              <InputText
                 handleChange={this.handleStandardChange}
                 value={email}
                 error={errors.email}
+                name='email'
+                type='email'
+                placeholder='Email'
+                text='Email'
               />
-              <InputPassword
+              <InputText
                 handleChange={this.handleStandardChange}
                 text='Password'
                 name='password'
                 value={password}
                 error={errors.password}
+                type='password'
+                placeholder='Password'
               />
-              <InputPassword
+              <InputText
                 handleChange={this.handleStandardChange}
                 text='Confirm Password'
                 name='passwordConfirm'
+                type='password'
+                placeholder='Confirm Password'
                 value={passwordConfirm}
                 error={errors.passwordConfirm}
               />
