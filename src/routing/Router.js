@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import Navigation from 'layout/Navigation';
 import Loader from 'components/common/Loader';
@@ -62,34 +62,32 @@ const PlayWorkout = Loadable({
 
 export default function Router() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path='/' component={Landing} exact />
-        <Route path='/register' component={Register} exact />
-        <PrivateRoute path='/'>
-          <Navigation />
-          <Switch>
-            <PrivateRoute path='/dashboard' component={Dashboard} exact />
-            <PrivateRoute path='/workout/create' component={AddWorkout} exact />
-            <PrivateRoute path='/workout/:id' component={Workout} exact />
-            <PrivateRoute path='/workouts' component={Workouts} exact />
-            <PrivateRoute path='/exercises' component={Exercises} exact />
-            <PrivateRoute path='/exercise/:id' component={Exercise} exact />
-            <PrivateRoute path='/quick-start' component={QuickStart} exact />
-            <PrivateRoute
-              path='/quick-start/workout/:id'
-              component={QuickStartWorkout}
-              exact
-            />
-            <PrivateRoute
-              path='/workout/play/:id'
-              component={PlayWorkout}
-              exact
-            />
-          </Switch>
-        </PrivateRoute>
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route path='/' component={Landing} exact />
+      <Route path='/register' component={Register} exact />
+      <PrivateRoute path='/'>
+        <Navigation />
+        <Switch>
+          <PrivateRoute path='/dashboard' component={Dashboard} exact />
+          <PrivateRoute path='/workout/create' component={AddWorkout} exact />
+          <PrivateRoute path='/workout/:id' component={Workout} exact />
+          <PrivateRoute path='/workouts' component={Workouts} exact />
+          <PrivateRoute path='/exercises' component={Exercises} exact />
+          <PrivateRoute path='/exercise/:id' component={Exercise} exact />
+          <PrivateRoute path='/quick-start' component={QuickStart} exact />
+          <PrivateRoute
+            path='/quick-start/workout/:id'
+            component={QuickStartWorkout}
+            exact
+          />
+          <PrivateRoute
+            path='/workout/play/:id'
+            component={PlayWorkout}
+            exact
+          />
+        </Switch>
+      </PrivateRoute>
+    </Switch>
   );
 }
 

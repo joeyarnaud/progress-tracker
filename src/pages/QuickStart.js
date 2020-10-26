@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { InfoSlide, StartContainer, QSContainer } from 'components/quick-start';
+import { StartContainer, QSContainer } from 'components/quick-start';
+import InfoSlide from 'components/quick-start/info-slide/InfoSlide';
 import {
   createExercise,
   addExercise,
@@ -12,7 +14,6 @@ import { isEmpty } from 'helpers';
 class QuickStart extends Component {
   state = {
     workoutName: '',
-    // unblock: null,
     error: {},
   };
 
@@ -60,6 +61,13 @@ class QuickStart extends Component {
 const mapStateToProps = (state) => ({
   quickstart: state.quickstart,
 });
+
+QuickStart.propTypes = {
+  quickstart: PropTypes.shape({ workout: PropTypes.object.isRequired,
+    unfinishedWorkouts: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.object.isRequired, }).isRequired
+}
 
 const mapDispatchToProps = (dispatch) => ({
   createExercise: (name, weight, sets, reps, type, date) =>

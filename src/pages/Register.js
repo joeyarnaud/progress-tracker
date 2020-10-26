@@ -28,8 +28,12 @@ class Register extends Component {
     serverError: [],
   };
 
-  handleStandardChange = (e) =>
-    this.setState({ [e.target.name]: e.target.value });
+  handleStandardChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState(prevState => ({ [name]: value, errors: { ...prevState.errors, [name]: '' } }));
+  }
+    
 
   handleSubmit = () => {
     const { name, email, password, passwordConfirm } = this.state;
@@ -43,12 +47,14 @@ class Register extends Component {
           password: password,
         })
         .then((res) => {
-          console.log(res.data);
           this.props.setCurrentUser(res.data);
         })
         .catch((err) => {
-          console.log(err.response);
-          this.setState({ serverError: err.response.data.errors });
+          if (err.response) {
+            this.setState({ serverError: err.response.data.error });
+          } else {
+            this.setState({ serverError: 'Something Went Wrong, Try Again Later' })
+          }
         });
     }
   };
@@ -147,7 +153,7 @@ class Register extends Component {
                 error={errors.passwordConfirm}
               />
               {!isEmpty(serverError) && (
-                <ErrorText>{serverError[0].msg}</ErrorText>
+                <ErrorText>{serverError}</ErrorText>
               )}
               <Center>
                 <SubmitButton

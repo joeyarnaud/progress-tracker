@@ -14,7 +14,9 @@ import {
   MarginRight,
 } from 'components/workouts/add-workout';
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#root');
+}
 
 const customStyles = {
   overlay: {

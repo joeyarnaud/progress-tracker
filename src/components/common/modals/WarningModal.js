@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
 import { FlexBoxCenter } from 'components/common/styled-components';
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#root');
+}
 
 const customStyles = {
   overlay: {

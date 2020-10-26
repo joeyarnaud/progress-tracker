@@ -35,7 +35,7 @@ function Navigation(props) {
   return !isEmpty(tokenInfo) ? (
     <NavContainer collapseOnSelect bg='dark'>
       <Brand to='/dashboard' as={NavLink}>
-        Progress Tracker <i className='fas fa-chart-line'></i>
+        Progress Tracker<i className='fas fa-chart-line' style={{ marginLeft: '1rem'}}></i>
       </Brand>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse id='responsive-navbar-nav'>

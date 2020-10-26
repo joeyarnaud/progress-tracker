@@ -1,5 +1,6 @@
+import InfoSlide from './info-slide/InfoSlide';
+
 export * from './common';
-export * from './InfoSlide';
 export * from './ExerciseSlide';
 export * from './ExerciseSlideView';
 export * from './ExerciseSlidePlay';

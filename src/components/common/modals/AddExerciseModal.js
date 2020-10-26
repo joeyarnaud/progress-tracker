@@ -18,7 +18,10 @@ import {
 } from 'components/workouts/add-workout';
 import { FlexBox } from '../styled-components';
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#root');
+}
+
 
 const customStyles = {
   overlay: {

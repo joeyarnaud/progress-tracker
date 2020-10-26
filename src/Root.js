@@ -5,6 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 import { GlobalStyle, theme } from './styledSetup';
 import api from 'utils/api';
 import rootReducer from './reducers';
@@ -54,7 +55,9 @@ const Root = ({ children, initialState }) => {
         return (
           <Provider store={store}>
             <GlobalStyle />
-            <ThemeProvider theme={theme}>{children}</ThemeProvider>
+            <ThemeProvider theme={theme}>
+              <BrowserRouter>{children}</BrowserRouter>
+            </ThemeProvider>
           </Provider>
         );
       }}
