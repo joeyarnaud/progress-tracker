@@ -1,14 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { FlexBox, FlexBoxBetween } from 'components/common/styled-components';
 import { ContentContainer, Container } from './common';
-
-const ExerciseContentContainer = styled.div`
-  font-size: 1.6rem;
-  margin-right: 2rem;
-  color: ${(props) => props.theme.colors.colorSuccess};
-`;
+import {
+  ExerciseContentContainer,
+  ExerciseContainer,
+} from './ExerciseContainer';
+import { isEmpty } from 'helpers';
 
 function WorkoutSummary(props) {
   const { date, exercises, name, id, quickstart } = props;
@@ -28,13 +27,15 @@ function WorkoutSummary(props) {
       </FlexBoxBetween>
       <FlexBox>
         <ExerciseContentContainer>Exercises: </ExerciseContentContainer>
-        {exercises.map((exercise, index) => {
-          return (
-            <ExerciseContentContainer key={`exercise-${exercise._id}-${index}`}>
-              {exercise.name}
-            </ExerciseContentContainer>
-          );
-        })}
+        {!isEmpty(exercises) &&
+          exercises.map((exercise, index) => {
+            return (
+              <ExerciseContainer
+                key={`${index}-${exercise._id}`}
+                name={exercise.name}
+              />
+            );
+          })}
       </FlexBox>
     </Container>
   );
@@ -42,6 +43,14 @@ function WorkoutSummary(props) {
 
 WorkoutSummary.defaultProps = {
   quickstart: false,
+};
+
+WorkoutSummary.propTypes = {
+  date: PropTypes.string.isRequired,
+  exercises: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  quickstart: PropTypes.bool.isRequired,
 };
 
 export { WorkoutSummary };

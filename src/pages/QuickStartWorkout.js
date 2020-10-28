@@ -32,7 +32,6 @@ class QuickStartWorkout extends Component {
     const { submitted, _id } = nextProps.workout;
     if (this.props.location.search !== nextProps.location.search) {
       const { exercise } = qs.parse(nextProps.location.search);
-      console.log(exercise);
       this.setState({
         currentExercise: Number(exercise),
       });

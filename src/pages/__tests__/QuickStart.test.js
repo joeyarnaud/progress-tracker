@@ -25,5 +25,13 @@ describe('The QuickStart component', () => {
     expect(wrapped.find(InfoSlide).length).toEqual(1);
   });
 
+  it('responds to input', () => {
+    expect(wrapped.find('input').prop('value')).toEqual('');
+    wrapped.find('input').simulate('change', {
+      target: { name: 'workoutName', value: 'chest pump' },
+    });
+    expect(wrapped.find('input').prop('value')).toEqual('chest pump');
+  })
+
 
 });
