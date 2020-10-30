@@ -15,7 +15,7 @@ function ExerciseSummary(props) {
     <Relative>
       <Container to={`/exercise/${id}`}>
         <FlexBoxBetween>
-          <ContentContainer dark>Workout Name: {name}</ContentContainer>
+          <ContentContainer dark>Exercise Name: {name}</ContentContainer>
           <ContentContainer dark>
             {moment(date).format('DD/MM/yyyy')}
           </ContentContainer>

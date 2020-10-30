@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { FlexBox, FlexBoxBetween } from 'components/common/styled-components';
+import { FlexBoxBetween } from 'components/common/styled-components';
 import { ContentContainer, Container } from './common';
-import {
-  ExerciseContentContainer,
-  ExerciseContainer,
-} from './ExerciseContainer';
-import { isEmpty } from 'helpers';
+import ExercisesDisplay from './ExercisesDisplay';
 
 function WorkoutSummary(props) {
   const { date, exercises, name, id, quickstart } = props;
@@ -25,18 +21,7 @@ function WorkoutSummary(props) {
           {moment(date).format('DD/MM/yyyy')}
         </ContentContainer>
       </FlexBoxBetween>
-      <FlexBox>
-        <ExerciseContentContainer>Exercises: </ExerciseContentContainer>
-        {!isEmpty(exercises) &&
-          exercises.map((exercise, index) => {
-            return (
-              <ExerciseContainer
-                key={`${index}-${exercise._id}`}
-                name={exercise.name}
-              />
-            );
-          })}
-      </FlexBox>
+      <ExercisesDisplay exercises={exercises} />
     </Container>
   );
 }
