@@ -36,7 +36,7 @@ const InfoContainer = styled.div`
   text-align: center;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   font-size: 2rem;
   color: ${(props) => props.theme.colors.colorInfo};
   margin-top: 3rem;

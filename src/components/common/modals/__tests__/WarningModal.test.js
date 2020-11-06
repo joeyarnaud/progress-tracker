@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import TestRoot from 'TestRoot';
-import WarningModal from '../WarningModal';
+import { WarningModal, Title } from '../WarningModal';
 
 let wrapped;
 
@@ -21,6 +21,18 @@ describe('The Warning modal component', () => {
           size={32}
         />
       </TestRoot>
+    );
+  });
+
+  it('renders the delete button', () => {
+    expect(wrapped.find('button').at(0).text()).toEqual(' Do you want to...');
+  });
+
+  it('renders the title', () => {
+    wrapped.find('button').at(0).simulate('click');
+    wrapped.update();
+    expect(wrapped.find(Title).text()).toEqual(
+      'Are you sure you want to delete component?'
     );
   });
 });

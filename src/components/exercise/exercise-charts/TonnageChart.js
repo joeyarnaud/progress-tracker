@@ -5,22 +5,19 @@ import moment from 'moment';
 import { ChartContainer, ChartTitle } from './common';
 import { isEmpty } from 'helpers';
 
-function OneRepMaxChart(props) {
+function TonnageChart(props) {
   const { inputs } = props;
   return (
     <ChartContainer>
-      <ChartTitle>1RM (calculated) vs Time</ChartTitle>
+      <ChartTitle>Tonnage vs Time</ChartTitle>
       <VictoryChart theme={VictoryTheme.material}>
         {!isEmpty(inputs) && (
           <VictoryLine
             style={{
-              data: {
-                fill: '#c43a31',
-                fillOpacity: 0.6,
-                stroke: '#c43a31',
-                strokeWidth: 3,
+              data: { stroke: '#c43a31' },
+              parent: {
+                border: '1px solid #ccc',
               },
-              parent: { border: '1px solid #ccc' },
             }}
             animate={{
               duration: 2000,
@@ -28,19 +25,19 @@ function OneRepMaxChart(props) {
             }}
             data={inputs.map((input) => ({
               x: moment(input.date).format('DD/MM'),
-              y: input.weight / (1.0278 - 0.0278 * input.reps),
+              y: input.weight * input.reps * input.sets,
             }))}
           />
         )}
-        <VictoryAxis dependentAxis fixLabelOverlap label='Weight (kg)' />
-        <VictoryAxis fixLabelOverlap label='Date' />
+        <VictoryAxis dependentAxis />
+        <VictoryAxis fixLabelOverlap />
       </VictoryChart>
     </ChartContainer>
   );
 }
 
-OneRepMaxChart.propTypes = {
+TonnageChart.propTypes = {
   inputs: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default OneRepMaxChart;
+export default TonnageChart;

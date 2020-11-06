@@ -6,14 +6,14 @@ import {
   Relative,
   ContentContainer,
   ModifierContainer,
-  Container,
+  NoLinkContainer,
 } from './common';
 
 function InputSummary(props) {
   const { date, reps, sets, type, weight, name, id, deleteInput } = props;
   return (
     <Relative>
-      <Container>
+      <NoLinkContainer>
         <FlexBoxBetween>
           <ContentContainer dark>
             {moment(date).format('DD/MM/yyyy')}
@@ -27,7 +27,7 @@ function InputSummary(props) {
           <ContentContainer>Reps: {reps}</ContentContainer>
           <ContentContainer>Sets: {sets}</ContentContainer>
         </FlexBoxBetween>
-      </Container>
+      </NoLinkContainer>
       <ModifierContainer>
         {
           //   <EditButton>
